@@ -5,19 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Goose.Data
+namespace Goose.Models.Song_Models
 {
-    public class Song
-    {
-        [Key]
-        public int SongId { get; set; }
-
-        [Required]
+    public class SongCreate
+    {      
+        [MaxLength(150)]           
         public string Title { get; set; }
-        [Required]
         public string Artist { get; set; }
-        public string Lyrics { get; set; }
+       // public string Lyrics { get; set; }
         public string OriginalArtist { get; set; }
-
     }
 }
