@@ -58,21 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SongService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Goose.Data\Goose.Data.csproj">
-      <Project>{3F1B514C-198E-437C-A4C8-0A173441C667}</Project>
-      <Name>Goose.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Goose.Models\Goose.Models.csproj">
-      <Project>{2868cad7-c655-4a3a-a4e6-97bc6c193f85}</Project>
-      <Name>Goose.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
