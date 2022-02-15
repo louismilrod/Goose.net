@@ -22,6 +22,6 @@ namespace Goose.Data.Data
         [Required]
         public SetType SetNumber { get; set; }
 
-        public ICollection<SongsJoinSetlist> SongsForSetList { get; set; }
+        public virtual ICollection<SongsJoinSetlist> SongsForSetList { get; set; }
     }
 }
