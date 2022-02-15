@@ -14,8 +14,10 @@ namespace Goose.Data.Data
         [Required]
         public int PositionInSet { get; set; }
         [Required]
-        public ICollection<Song> Song { get; set; }
+        public int SongId { get; set; }
+        public virtual Song Song { get; set; }
         [Required]
-        public ICollection<Setlist> Setlist { get; set; }
+        public int SetlistId { get; set; }
+        public virtual Setlist Setlist { get; set; }
     }
 }
