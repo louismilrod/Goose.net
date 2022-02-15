@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Setlist.cs" />
+    <Compile Include="Data\SongsJoinSetlist.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202202151813370_InitialCreate.cs" />
     <Compile Include="Migrations\202202151813370_InitialCreate.designer.cs">
