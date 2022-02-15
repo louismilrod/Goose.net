@@ -52,5 +52,51 @@ namespace Goose.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public SongDetail GetSongById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Songs.Single(s=>s.SongId == id);
+
+                return new SongDetail
+                {
+                    SongId = entity.SongId,
+                    Title = entity.Title,
+                    Artist = entity.Artist,
+                    OriginalArtist = entity.OriginalArtist,
+                    Lyrics = entity.Lyrics
+                };
+            }
+        }
+
+        public bool UpdateSong(SongEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Songs.Single(s => s.SongId == model.SongId);
+
+                entity.Title = model.Title;
+                entity.Artist = model.Artist;
+                entity.OriginalArtist = model.OriginalArtist;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteSong(int noteId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Songs
+                        .Single(e => e.SongId == noteId);
+
+                ctx.Songs.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
