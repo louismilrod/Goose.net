@@ -64,6 +64,10 @@
     <Compile Include="Migrations\202202151813370_InitialCreate.designer.cs">
       <DependentUpon>202202151813370_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202152112355_AddedSetList_and_SetListJoiningTable.cs" />
+    <Compile Include="Migrations\202202152112355_AddedSetList_and_SetListJoiningTable.designer.cs">
+      <DependentUpon>202202152112355_AddedSetList_and_SetListJoiningTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Song.cs" />
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202202151813370_InitialCreate.resx">
       <DependentUpon>202202151813370_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202152112355_AddedSetList_and_SetListJoiningTable.resx">
+      <DependentUpon>202202152112355_AddedSetList_and_SetListJoiningTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
