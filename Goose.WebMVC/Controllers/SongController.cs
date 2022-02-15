@@ -45,7 +45,76 @@ namespace Goose.WebMVC.Controllers
             return View(model);
         }
 
-        
+        public ActionResult Details(int id)
+        {
+            var svc = AnonymousServiceView();
+            var model = svc.GetSongById(id);
+
+            return View(model);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var service = CreateSongService();
+            var detail = service.GetSongById(id);
+            var model =
+                new SongEdit
+                {
+                    Title = detail.Title,
+                    Artist = detail.Artist,
+                    OriginalArtist = detail.OriginalArtist,
+                };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, SongEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.SongId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateSongService();
+
+            if (service.UpdateSong(model))
+            {
+                TempData["SaveResult"] = "Your note was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your note could not be updated.");
+            return View(model);
+        }
+
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = CreateSongService();
+            var model = svc.GetSongById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = CreateSongService();
+
+            service.DeleteSong(id);
+
+            TempData["SaveResult"] = "Your note was deleted";
+
+            return RedirectToAction("Index");
+        }
+
+
         private SongService CreateSongService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
