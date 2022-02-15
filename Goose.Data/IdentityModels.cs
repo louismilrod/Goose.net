@@ -3,6 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Goose.Data.Data;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -34,6 +35,8 @@ namespace Goose.Data
         }
 
         public DbSet<Song> Songs { get; set; }
+        public DbSet<Setlist> Setlist { get; set; }
+        public DbSet<SongsJoinSetlist> SongsJoinSetlist { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
