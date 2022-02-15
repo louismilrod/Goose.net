@@ -10,7 +10,7 @@ namespace Goose.Data
     public class Song
     {
         [Key]
-        public int Id { get; set; }
+        public int SongId { get; set; }
 
         [Required]
         public string Title { get; set; }
