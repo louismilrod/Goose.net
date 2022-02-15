@@ -33,6 +33,8 @@ namespace Goose.Data
             return new ApplicationDbContext();
         }
 
+        public DbSet<Song> Songs { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
