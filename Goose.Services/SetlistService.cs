@@ -13,6 +13,11 @@ namespace Goose.Services
     {
         private readonly Guid _userId;
 
+        public SetlistService()
+        {
+
+        }
+
         public SetlistService (Guid userId)
         {
             _userId = userId;
