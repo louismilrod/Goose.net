@@ -84,7 +84,7 @@ namespace Goose.Services
             }
         }
 
-        public bool DeleteSong(int noteId)
+        public bool DeleteSong(int songId)
         {
             using (var ctx = new ApplicationDbContext())
             {

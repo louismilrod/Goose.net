@@ -11,7 +11,7 @@ namespace Goose.Models.Setlist_Models
     public class SetlistViewModel
     {
         public int SetlistId { get; set; }
-        public SetType SetType {get; set;}        
+        public SetType SetNumber {get; set;}        
         public virtual ICollection<SongsJoinSetlist> SongsForSetList { get; set; }
         public DateTime DateofPerformance { get; set; }
 
