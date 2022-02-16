@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetlistViewModel.cs" />
+    <Compile Include="SongsJoinSetlistViewModel.cs" />
     <Compile Include="Song_Models\SongCreate.cs" />
     <Compile Include="Song_Models\SongDetail.cs" />
     <Compile Include="Song_Models\SongEdit.cs" />
