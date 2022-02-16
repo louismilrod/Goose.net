@@ -91,7 +91,7 @@ namespace Goose.Services
                 var entity =
                     ctx
                         .Songs
-                        .Single(e => e.SongId == noteId);
+                        .Single(e => e.SongId == songId);
 
                 ctx.Songs.Remove(entity);
 
