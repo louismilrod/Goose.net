@@ -45,6 +45,7 @@ namespace Goose.Services
             {
                 var setlist = new Setlist()
                 {
+                    SetlistId = model.SetlistId,
                     SetNumber = model.SetNumber,
                     SongsForSetList = model.SongsForSetList,
                     DateofPerformance = model.DateofPerformance

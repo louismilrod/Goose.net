@@ -173,6 +173,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SetlistController.cs" />
     <Compile Include="Controllers\SongController.cs" />
+    <Compile Include="Controllers\SongJoinSetlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -247,6 +248,11 @@
     <Content Include="Views\Setlist\Create.cshtml" />
     <Content Include="Views\Setlist\Edit.cshtml" />
     <Content Include="Views\Setlist\Delete.cshtml" />
+    <Content Include="Views\SongJoinSetlist\Delete.cshtml" />
+    <Content Include="Views\SongJoinSetlist\Edit.cshtml" />
+    <Content Include="Views\SongJoinSetlist\Create.cshtml" />
+    <Content Include="Views\SongJoinSetlist\Details.cshtml" />
+    <Content Include="Views\SongJoinSetlist\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

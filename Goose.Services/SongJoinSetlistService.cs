@@ -66,7 +66,7 @@ namespace Goose.Services
             }
         }
 
-        public bool UpdateSetlist(SongsJoinSetlistViewModel model)
+        public bool UpdateSongJoinSetlist(SongsJoinSetlistViewModel model)
         {
             using (var ctx = new ApplicationDbContext())
             {
