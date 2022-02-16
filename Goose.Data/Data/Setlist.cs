@@ -21,7 +21,9 @@ namespace Goose.Data.Data
         public int SetlistId { get; set; }
         [Required]
         public SetType SetNumber { get; set; }
-
+        [Required]
+        public DateTime DateofPerformance { get; set; }
         public virtual ICollection<SongsJoinSetlist> SongsForSetList { get; set; }
+
     }
 }
