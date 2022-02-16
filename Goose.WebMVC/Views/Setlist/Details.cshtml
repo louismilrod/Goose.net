@@ -1,0 +1,34 @@
+﻿@model Goose.Models.Setlist_Models.SetlistViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SetlistViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SetlistId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SetlistId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateofPerformance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateofPerformance)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.SetlistId  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

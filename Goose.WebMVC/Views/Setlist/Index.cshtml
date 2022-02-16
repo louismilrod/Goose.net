@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Goose.Models.Setlist_Models.SetlistViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SetlistId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateofPerformance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SetNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SongsForSetList)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.SetlistId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateofPerformance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SetNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SongsForSetList)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.SetlistId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.SetlistId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.SetlistId })
+    </td>
+</tr>
+}
+
+</table>
