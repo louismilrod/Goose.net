@@ -83,11 +83,11 @@ namespace Goose.WebMVC.Controllers
 
             if (service.UpdateSong(model))
             {
-                TempData["SaveResult"] = "Your note was updated.";
+                TempData["SaveResult"] = "Your song was updated.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your note could not be updated.");
+            ModelState.AddModelError("", "Your song could not be updated.");
             return View(model);
         }
 
@@ -109,7 +109,7 @@ namespace Goose.WebMVC.Controllers
 
             service.DeleteSong(id);
 
-            TempData["SaveResult"] = "Your note was deleted";
+            TempData["SaveResult"] = "Your song was deleted";
 
             return RedirectToAction("Index");
         }
