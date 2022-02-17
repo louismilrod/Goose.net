@@ -62,8 +62,8 @@ namespace Goose.WebMVC.Controllers
             {
                 SetlistId = detail.SetlistId,
                 SetNumber = detail.SetNumber,
-                SongsForSetList = detail.SongsForSetList,
-                DateofPerformance = detail.DateofPerformance
+                SongsForSetlist = detail.SongsForSetlist,
+                DateOfPerformance = detail.DateOfPerformance
             };
 
             return View(model);
