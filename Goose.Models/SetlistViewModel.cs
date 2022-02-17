@@ -1,4 +1,5 @@
-﻿using Goose.Data.Data;
+﻿using Goose.Data;
+using Goose.Data.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace Goose.Models.Setlist_Models
     public class SetlistViewModel
     {
         public int SetlistId { get; set; }
-        public SetType SetNumber {get; set;}        
-        public virtual ICollection<SongsJoinSetlist> SongsForSetList { get; set; }
-        public DateTime DateofPerformance { get; set; }
+        public SetType SetNumber {get; set;}      
+        public DateTime DateOfPerformance { get; set; }
+        public List<string> SongTitlesForSetlist { get; set; }
+        public List<Song> SongsForSetlist { get; set; }
 
     }
 }
