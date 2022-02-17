@@ -20,6 +20,8 @@ namespace Goose.Data.Data
         [Key]
         public int SetlistId { get; set; }
         [Required]
+        public int ConcertId { get; set; }
+        [Required]
         public SetType SetNumber { get; set; }
         [Required]
         public DateTime DateofPerformance { get; set; }

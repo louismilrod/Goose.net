@@ -30,6 +30,7 @@ namespace Goose.Services
                 
                 var query = ctx.Setlist.Select(s => new SetlistViewModel
                 {
+                    ConcertId = s.ConcertId,
                     SetlistId = s.SetlistId,
                     SetNumber = s.SetNumber,
                     SongsForSetlist = s.SongsForSetList.Select(g=>g.Song).ToList(), //entity.SongsForSetList.Select(s=>s.Song).ToList()
@@ -46,6 +47,7 @@ namespace Goose.Services
             {
                 var setlist = new Setlist()
                 {
+                    ConcertId= model.ConcertId,
                     SetlistId = model.SetlistId,
                     SetNumber = model.SetNumber,                    
                     DateofPerformance = model.DateOfPerformance
@@ -65,6 +67,7 @@ namespace Goose.Services
 
                 return new SetlistViewModel
                 {
+                    ConcertId = entity.ConcertId,
                     SetlistId = entity.SetlistId,
                     SetNumber = entity.SetNumber,
                     SongsForSetlist = entity.SongsForSetList.Select(s => s.Song).ToList(), //.select for list of songs
@@ -95,6 +98,7 @@ namespace Goose.Services
             {
                 var entity = ctx.Setlist.Single(s => s.SetlistId == model.SetlistId);
 
+                entity.ConcertId = model.ConcertId;
                 entity.SetNumber = model.SetNumber;
                 entity.SongsForSetList = (ICollection<SongsJoinSetlist>)model.SongsForSetlist.Select(s=>s.SongId);
                 entity.DateofPerformance = model.DateOfPerformance;
