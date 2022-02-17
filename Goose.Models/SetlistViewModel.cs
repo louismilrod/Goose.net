@@ -13,8 +13,7 @@ namespace Goose.Models.Setlist_Models
     {
         public int SetlistId { get; set; }
         public SetType SetNumber {get; set;}      
-        public DateTime DateOfPerformance { get; set; }
-        public List<string> SongTitlesForSetlist { get; set; }
+        public DateTime DateOfPerformance { get; set; }        
         public List<Song> SongsForSetlist { get; set; }
 
     }
