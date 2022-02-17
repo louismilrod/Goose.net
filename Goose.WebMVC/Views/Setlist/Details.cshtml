@@ -19,12 +19,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateofPerformance)
+            @Html.DisplayNameFor(model => model.DateOfPerformance)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateofPerformance)
+            @Html.DisplayFor(model => model.DateOfPerformance)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SongsForSetlist)
+        </dt>
+@foreach (var item in Model.SongsForSetlist)
+{
+        <dd>
+            @Html.DisplayFor(model => model.SongsForSetlist)   @*foreach*@
+        </dd>
+
+}
 
     </dl>
 </div>
