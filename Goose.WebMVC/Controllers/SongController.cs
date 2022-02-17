@@ -60,6 +60,7 @@ namespace Goose.WebMVC.Controllers
             var model =
                 new SongEdit
                 {
+                    SongId = detail.SongId,
                     Title = detail.Title,
                     Artist = detail.Artist,
                     OriginalArtist = detail.OriginalArtist,
