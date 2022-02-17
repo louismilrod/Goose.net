@@ -76,6 +76,7 @@ namespace Goose.Services
             {
                 var entity = ctx.Songs.Single(s => s.SongId == model.SongId);
 
+                
                 entity.Title = model.Title;
                 entity.Artist = model.Artist;
                 entity.OriginalArtist = model.OriginalArtist;
