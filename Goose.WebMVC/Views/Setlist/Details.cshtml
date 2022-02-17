@@ -19,6 +19,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.ConcertId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConcertId)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.DateOfPerformance)
         </dt>
 
@@ -29,17 +37,14 @@
         <dt>
             @Html.DisplayNameFor(model => model.SongsForSetlist)
         </dt>
-@foreach (var item in Model.SongsForSetlist)
-{
-        <dd>
-            @Html.DisplayFor(model => model.SongsForSetlist)   @*foreach*@
-        </dd>
 
-}
+        <dt>
+            @Html.DisplayFor(model => model.SongsForSetlist)
+        </dt>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.SetlistId  }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SetlistId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

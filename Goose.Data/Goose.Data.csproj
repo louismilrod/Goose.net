@@ -72,6 +72,10 @@
     <Compile Include="Migrations\202202161451115_AddedDateOfPerformanceToSet.designer.cs">
       <DependentUpon>202202161451115_AddedDateOfPerformanceToSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202171535435_ConcertIdImplemented.cs" />
+    <Compile Include="Migrations\202202171535435_ConcertIdImplemented.designer.cs">
+      <DependentUpon>202202171535435_ConcertIdImplemented.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Song.cs" />
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202202161451115_AddedDateOfPerformanceToSet.resx">
       <DependentUpon>202202161451115_AddedDateOfPerformanceToSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202171535435_ConcertIdImplemented.resx">
+      <DependentUpon>202202171535435_ConcertIdImplemented.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -60,6 +60,7 @@ namespace Goose.WebMVC.Controllers
             var detail = service.GetSetlistById(id);
             var model = new SetlistViewModel
             {
+                ConcertId = detail.ConcertId,
                 SetlistId = detail.SetlistId,
                 SetNumber = detail.SetNumber,
                 SongsForSetlist = detail.SongsForSetlist,
