@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Concert.cs" />
     <Compile Include="Data\Setlist.cs" />
     <Compile Include="Data\SongsJoinSetlist.cs" />
     <Compile Include="IdentityModels.cs" />
@@ -75,6 +76,10 @@
     <Compile Include="Migrations\202202171535435_ConcertIdImplemented.cs" />
     <Compile Include="Migrations\202202171535435_ConcertIdImplemented.designer.cs">
       <DependentUpon>202202171535435_ConcertIdImplemented.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202171651109_AddedConcertDataLayer.cs" />
+    <Compile Include="Migrations\202202171651109_AddedConcertDataLayer.designer.cs">
+      <DependentUpon>202202171651109_AddedConcertDataLayer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202202171535435_ConcertIdImplemented.resx">
       <DependentUpon>202202171535435_ConcertIdImplemented.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202171651109_AddedConcertDataLayer.resx">
+      <DependentUpon>202202171651109_AddedConcertDataLayer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
