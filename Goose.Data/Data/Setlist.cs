@@ -26,6 +26,7 @@ namespace Goose.Data.Data
         [Required]
         public DateTime DateofPerformance { get; set; }
         public virtual ICollection<SongsJoinSetlist> SongsForSetList { get; set; }
+        public virtual Concert Concert { get; set; }
 
     }
 }
