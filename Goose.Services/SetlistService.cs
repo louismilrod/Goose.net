@@ -27,13 +27,14 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                
                 var query = ctx.Setlist.Select(s => new SetlistViewModel
                 {
                     SetlistId = s.SetlistId,
                     SetNumber = s.SetNumber,
-                    SongsForSetList = s.SongsForSetList,
-                    DateofPerformance = s.DateofPerformance
-                });
+                    SongsForSetlist = s.SongsForSetList.Select(g=>g.Song).ToList(), //entity.SongsForSetList.Select(s=>s.Song).ToList()
+                    DateOfPerformance = s.DateofPerformance
+                }) ;
 
                 return query.ToArray();
             }
@@ -46,9 +47,8 @@ namespace Goose.Services
                 var setlist = new Setlist()
                 {
                     SetlistId = model.SetlistId,
-                    SetNumber = model.SetNumber,
-                    SongsForSetList = model.SongsForSetList,
-                    DateofPerformance = model.DateofPerformance
+                    SetNumber = model.SetNumber,                    
+                    DateofPerformance = model.DateOfPerformance
                 };
 
                 ctx.Setlist.Add(setlist);
@@ -60,14 +60,15 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Setlist.Single(s => s.SetlistId == id);
+                var entity = ctx.Setlist.Find(id); 
+                
 
                 return new SetlistViewModel
                 {
                     SetlistId = entity.SetlistId,
                     SetNumber = entity.SetNumber,
-                    SongsForSetList = entity.SongsForSetList,
-                    DateofPerformance = entity.DateofPerformance                    
+                    SongsForSetlist = entity.SongsForSetList.Select(s => s.Song).ToList(), //.select for list of songs
+                    DateOfPerformance = entity.DateofPerformance
                 };
             }
         }
@@ -95,8 +96,8 @@ namespace Goose.Services
                 var entity = ctx.Setlist.Single(s => s.SetlistId == model.SetlistId);
 
                 entity.SetNumber = model.SetNumber;
-                entity.SongsForSetList = model.SongsForSetList;
-                entity.DateofPerformance = model.DateofPerformance;
+                entity.SongsForSetList = (ICollection<SongsJoinSetlist>)model.SongsForSetlist.Select(s=>s.SongId);
+                entity.DateofPerformance = model.DateOfPerformance;
 
                 return ctx.SaveChanges() == 1;
             }
