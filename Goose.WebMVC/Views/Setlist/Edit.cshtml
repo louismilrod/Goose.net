@@ -15,19 +15,13 @@
     <h4>SetlistViewModel</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.SetlistId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.SetlistId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.SetlistId, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    @Html.HiddenFor(model => model.SetlistId)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.DateofPerformance, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.DateOfPerformance, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DateofPerformance, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DateofPerformance, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.DateOfPerformance, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DateOfPerformance, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -35,6 +29,14 @@
         @Html.LabelFor(model => model.SetNumber, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.SetNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SetNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SongsForSetlist, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SongsForSetlist, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.SetNumber, "", new { @class = "text-danger" })
         </div>
     </div>
