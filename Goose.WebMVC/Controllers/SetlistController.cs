@@ -44,12 +44,12 @@ namespace Goose.WebMVC.Controllers
 
             if (service.CreateSetlist(model))
             {
-                TempData["SaveResult"] = "Song created";
+                TempData["SaveResult"] = "Setlist created";
 
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Error creating a song");
+            ModelState.AddModelError("", "Error creating a setlist");
             return View(model);
         }
 
