@@ -44,7 +44,10 @@
         @Html.DisplayFor(modelItem => item.SetNumber)
     </th>    
     <td>
-        @Html.DisplayFor(modelItem => item.SongsForSetlist)
+        @foreach(var song in item.SongsForSetlist)
+                {
+                  <span>@song.Title, </span>          
+                }
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new {  id=item.SetlistId  }) |
