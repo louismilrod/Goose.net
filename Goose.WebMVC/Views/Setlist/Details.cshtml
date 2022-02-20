@@ -37,10 +37,15 @@
         <dt>
             @Html.DisplayNameFor(model => model.SongsForSetlist)
         </dt>
+        
+        @foreach (var item in Model.SongsForSetlist)
+        {
+            <dd>
+                <p>@item.Title</p>
+                 @*foreach*@
+            </dd>
 
-        <dt>
-            @Html.DisplayFor(model => model.SongsForSetlist)
-        </dt>
+        }
 
     </dl>
 </div>
