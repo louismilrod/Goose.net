@@ -81,6 +81,14 @@
     <Compile Include="Migrations\202202171651109_AddedConcertDataLayer.designer.cs">
       <DependentUpon>202202171651109_AddedConcertDataLayer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202181530476_IcollectionSetlistToConcerts.cs" />
+    <Compile Include="Migrations\202202181530476_IcollectionSetlistToConcerts.designer.cs">
+      <DependentUpon>202202181530476_IcollectionSetlistToConcerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202201742409_RemovedDateTimeFromSetlist.cs" />
+    <Compile Include="Migrations\202202201742409_RemovedDateTimeFromSetlist.designer.cs">
+      <DependentUpon>202202201742409_RemovedDateTimeFromSetlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Song.cs" />
@@ -104,6 +112,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202202171651109_AddedConcertDataLayer.resx">
       <DependentUpon>202202171651109_AddedConcertDataLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202181530476_IcollectionSetlistToConcerts.resx">
+      <DependentUpon>202202181530476_IcollectionSetlistToConcerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202201742409_RemovedDateTimeFromSetlist.resx">
+      <DependentUpon>202202201742409_RemovedDateTimeFromSetlist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
