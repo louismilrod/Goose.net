@@ -15,17 +15,19 @@ namespace Goose.Models.Setlist_Models
         [Required]
         [Display(Name = "Setlist  Id")]
         public int SetlistId { get; set; }
-        [Required]
+        
         [Display(Name = "Concert Id")]
         public int ConcertId { get; set; }
         [Required]
-        [Display(Name = "Set Number")]
+        [Display(Name = "First(1) Second(2) Third Set(3) or Encore(4)")]
         public SetType SetNumber {get; set;}
-        [Required]
+        
         [Display(Name = "Date of Performance")]
         public DateTime DateOfPerformance { get; set; }        
         [Display(Name = "Songs In Performance")]
-        public List<Song> SongsForSetlist { get; set; }
 
+        public string Location { get; set; }
+        public List<Song> SongsForSetlist { get; set; }
+        
     }
 }

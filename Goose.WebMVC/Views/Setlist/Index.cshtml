@@ -21,6 +21,9 @@
             @Html.DisplayNameFor(model => model.DateOfPerformance)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.SetNumber)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SongsForSetlist)
         </th>
         <th></th>
@@ -37,15 +40,19 @@
     <td>
         @Html.DisplayFor(modelItem => item.DateOfPerformance)
     </td>
+    <th>
+        @Html.DisplayFor(modelItem => item.SetNumber)
+    </th>    
     <td>
         @Html.DisplayFor(modelItem => item.SongsForSetlist)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id=item.SetlistId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.SetlistId }) |
+        @Html.ActionLink("Edit", "Edit", new {  id=item.SetlistId  }) |
+        @Html.ActionLink("Details", "Details", new {  id=item.SetlistId  }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.SetlistId })
     </td>
 </tr>
+
 }
 
 </table>

@@ -34,7 +34,8 @@ namespace Goose.Services
                     SetlistId = s.SetlistId,
                     SetNumber = s.SetNumber,
                     SongsForSetlist = s.SongsForSetList.Select(g=>g.Song).ToList(), //entity.SongsForSetList.Select(s=>s.Song).ToList()
-                    DateOfPerformance = s.DateofPerformance
+                    Location = s.Concert.Location,
+                    DateOfPerformance = s.Concert.PerformanceDate
                 }) ;
 
                 return query.ToArray();
@@ -47,11 +48,10 @@ namespace Goose.Services
             {
                 var setlist = new Setlist()
                 {
-                    ConcertId= model.ConcertId,
-                    SetlistId = model.SetlistId,
-                    SetNumber = model.SetNumber,                    
-                    DateofPerformance = model.DateOfPerformance
-                };
+                    SetlistId= model.SetlistId,
+                    ConcertId = model.ConcertId,                    
+                    SetNumber = model.SetNumber,
+                };                               
 
                 ctx.Setlist.Add(setlist);
                 return ctx.SaveChanges() == 1;
@@ -71,7 +71,7 @@ namespace Goose.Services
                     SetlistId = entity.SetlistId,
                     SetNumber = entity.SetNumber,
                     SongsForSetlist = entity.SongsForSetList.Select(s => s.Song).ToList(), //.select for list of songs
-                    DateOfPerformance = entity.DateofPerformance
+                    DateOfPerformance = entity.Concert.PerformanceDate
                 };
             }
         }
@@ -99,9 +99,7 @@ namespace Goose.Services
                 var entity = ctx.Setlist.Single(s => s.SetlistId == model.SetlistId);
 
                 entity.ConcertId = model.ConcertId;
-                entity.SetNumber = model.SetNumber;
-                entity.SongsForSetList = (ICollection<SongsJoinSetlist>)model.SongsForSetlist.Select(s=>s.SongId);
-                entity.DateofPerformance = model.DateOfPerformance;
+                entity.SetNumber = model.SetNumber;                
 
                 return ctx.SaveChanges() == 1;
             }
