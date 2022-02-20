@@ -40,6 +40,7 @@ namespace Goose.Services
             {
                 var joiningsongtosetlist = new SongsJoinSetlist()
                 {
+                    
                     SetlistId = model.SetlistId,
                     SongId = model.SongId,
                     PositionInSet = model.PositionInSet
@@ -54,10 +55,11 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.SongsJoinSetlist.Single(s => s.SetlistId == id);
+                var entity = ctx.SongsJoinSetlist.Single(s => s.SongsJoinSetlistId == id);
 
                 return new SongsJoinSetlistViewModel
                 {
+                    SongsJoinSetlistId = entity.SongsJoinSetlistId,
                     SetlistId = entity.SetlistId,
                     SongId = entity.SongId,
                     PositionInSet = entity.PositionInSet
@@ -70,11 +72,10 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.SongsJoinSetlist.Single(s => s.SetlistId == model.SetlistId);
+                var entity = ctx.SongsJoinSetlist.Single(s => s.SongsJoinSetlistId == model.SongsJoinSetlistId);
 
                 entity.SetlistId = model.SetlistId;
                 entity.SongId = model.SongId;
-                entity.SongsJoinSetlistId = model.SongsJoinSetlistId;
 
                 return ctx.SaveChanges() == 1;
             }
