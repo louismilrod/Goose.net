@@ -76,7 +76,7 @@ namespace Goose.WebMVC.Controllers
         {
             if(!ModelState.IsValid) return View(model);
 
-            if(model.SetlistId != id)
+            if(model.SongsJoinSetlistId != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
