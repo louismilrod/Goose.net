@@ -37,6 +37,47 @@ namespace Goose.Services
             }
         }
 
+        //public IEnumerable<SongExtraDetails> GetSongOccurances(int songId)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var songsonsetlist = ctx.SongsJoinSetlist;
+        //        var nextof = ctx.Songs.Select(x => x.SongId);
+
+        //        //OrderByDescending(a => a.SetlistId).GroupBy(b => b.PositionInSet).Select(c => c.Last());
+        //        List<SongDetail> list = new List<SongDetail>();
+        //        //find all the setlist w/ the song in it, loop through it
+        //        foreach (var item in songsonsetlist)
+        //        {
+        //            if (item.SongId == songId)
+        //            {
+        //                SongDetail detail = new SongDetail()
+        //                {
+        //                    Title = item.Song.Title
+        //                };
+
+        //                list.Add(detail); //should now have a list of all the times the song occured on a setlist
+        //            }
+        //        }
+        //        //list songs by position
+        //        //????
+        //        //get the song before/after in that set object
+
+        //        var query = ctx.Songs.Select(s => new SongExtraDetails
+        //        {
+        //            DateOfPerformance = s.Concert.PerformanceDate,
+        //            Venue = s.Concert.Venue,
+        //            Gap = //number of occurances of a song in the db since last occurance of the song, look at the all the concerts by dateofperformance and count the performances inbetween or before
+        //            Set = // s.setlist.setnumber
+        //            SongBefore = before,
+        //            SongAfter = occurance.
+        //        });
+
+        //        return query.ToArray();
+        //    }
+        //}
+
+
         public bool CreateSong(SongCreate model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -65,7 +106,8 @@ namespace Goose.Services
                     Title = entity.Title,
                     Artist = entity.Artist,
                     OriginalArtist = entity.OriginalArtist,
-                    Lyrics = entity.Lyrics
+                    Lyrics = entity.Lyrics,
+                    //TimesPlayed = ctx.SongsJoinSetlist.Where(f=>f.SongId == id).Count()
                 };
             }
         }
