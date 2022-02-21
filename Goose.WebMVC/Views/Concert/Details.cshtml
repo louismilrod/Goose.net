@@ -1,0 +1,78 @@
+﻿@model Goose.Models.Concert_Models.ConcertViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ConcertViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcertId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConcertId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfPerformance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfPerformance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Setlists)
+        </dt>
+        <dd>
+
+        @foreach (var setlist in Model.Setlists)
+        {
+            <span>@setlist.SetlistId , </span>
+        }
+        </dd>
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.ConcertId  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
