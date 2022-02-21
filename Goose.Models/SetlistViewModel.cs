@@ -1,5 +1,4 @@
-﻿using Goose.Data;
-using Goose.Data.Data;
+﻿using Goose.Models.Song_Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -27,7 +26,7 @@ namespace Goose.Models.Setlist_Models
         [Display(Name = "Songs In Performance")]
 
         public string Location { get; set; }
-        public List<Song> SongsForSetlist { get; set; }
+        public List<SongDetail> SongsForSetlist { get; set; }
         
     }
 }
