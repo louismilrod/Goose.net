@@ -8,8 +8,8 @@
 
 <div>
     <h4>ConcertViewModel</h4>
-    <hr />
     <dl class="dl-horizontal">
+    
         <dt>
             @Html.DisplayNameFor(model => model.ConcertId)
         </dt>
@@ -58,21 +58,62 @@
             @Html.DisplayFor(model => model.VenueName)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Setlists)
-        </dt>
-        <dd>
-
-        @foreach (var setlist in Model.Setlists)
-        {
-            <span>@setlist.SetlistId , </span>
-        }
-        </dd>
-        
-
     </dl>
+        @foreach (var item in Model.Setlists)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => item.SetlistId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => item.ConcertId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => item.DateOfPerformance)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => item.SetNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => item.SongsForSetlist)
+                    </th>
+                    <th></th>
+                </tr>          
+                
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SetlistId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConcertId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfPerformance)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.SetNumber)
+                    </th>
+                    <td>
+                        @foreach (var song in item.SongsForSetlist)
+                        {
+                            <span>@song.Title, </span>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.SetlistId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.SetlistId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.SetlistId })
+                    </td>
+                </tr>
+
+                
+
+            </table>
+        }
+
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.ConcertId  }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
