@@ -62,9 +62,7 @@ namespace Goose.WebMVC.Controllers
             {
                 ConcertId = detail.ConcertId,
                 SetlistId = detail.SetlistId,
-                SetNumber = detail.SetNumber,
-                SongsForSetlist = detail.SongsForSetlist,
-                DateOfPerformance = detail.DateOfPerformance
+                SetNumber = detail.SetNumber,                
             };
 
             return View(model);
