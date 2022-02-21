@@ -19,6 +19,14 @@ namespace Goose.WebMVC.Controllers
             return View(model);
         }
 
+        //Get: Concert/Details/{id}
+        public ActionResult Details(int id)
+        {
+            var service = AnonymousConcertService();
+            var model = service.GetConcertById(id);
+            return View(model);
+        }
+
         public ActionResult Create()
         {
             ViewBag.Title = "New Concert";
@@ -42,6 +50,73 @@ namespace Goose.WebMVC.Controllers
             ModelState.AddModelError("", "Error creating a concert");
             return View(model);
         }
+
+        // Get: Concert/Edit/5
+        public ActionResult Edit(int id)
+        {
+            var service = CreateConcertService();
+            var detail = service.GetConcertById(id);
+            var model = new ConcertViewModel
+            {
+                ConcertId = detail.ConcertId,
+                BandName = detail.BandName,
+                DateOfPerformance = detail.DateOfPerformance,
+                VenueName = detail.VenueName,
+                Location = detail.Location,
+                Notes = detail.Notes
+            };
+
+            return View(model);
+        }
+
+        //Post: Concert/Edit/{id}
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ConcertViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.ConcertId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateConcertService();
+
+            if (service.UpdateConcert(model))
+            {
+                TempData["SaveResult"] = "Your concert was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your concert could not be updated.");
+            return View(model);
+        }
+
+        //Get: Setlist/Delete/{id}
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = CreateConcertService();
+            var model = svc.GetConcertById(id);
+
+            return View(model);
+        }
+
+        // POST: Concert/Delete/{id}
+        [HttpPost, ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public ActionResult DeletePost(int id)
+        {
+            var service = CreateConcertService();
+
+            service.DeleteConcert(id);
+
+            TempData["SaveResult"] = "Your concert was deleted";
+
+            return RedirectToAction("Index");
+        }
+
 
         private ConcertServices CreateConcertService()
         {
