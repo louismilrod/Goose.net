@@ -29,9 +29,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Notes)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sets)
-        </th>
+        
         <th></th>
     </tr>
 
@@ -54,13 +52,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
-        </td>
-        <td>
-        @foreach(var setlist in item.Sets)
-                {
-                    <span>@setlist.SetlistId , </span>
-                }
-        </td>
+        </td>        
         <td>
             @Html.ActionLink("Edit", "Edit", new {  id=item.ConcertId }) |
             @Html.ActionLink("Details", "Details", new {  id = item.ConcertId }) |
