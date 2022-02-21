@@ -19,10 +19,7 @@ namespace Goose.Models.Concert_Models
         [Required]
         public string Location { get; set; }
         [Required]
-        public DateTime DateOfPerformance { get; set; }
-        //public int? Set2_Id { get; set; }
-        //public int? Set3_Id { get; set; }
-        //public int? Encore_Id { get; set; }
+        public DateTime DateOfPerformance { get; set; }       
         public string Notes { get; set; }
         public string VenueName { get; set; }
 
