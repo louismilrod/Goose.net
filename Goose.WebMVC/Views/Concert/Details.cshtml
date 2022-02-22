@@ -1,4 +1,4 @@
-﻿@model Goose.Models.Concert_Models.ConcertViewModel
+﻿@model Goose.Models.Concert_Models.ConcertViewModelForConcertDetails
 
 @{
     ViewBag.Title = "Details";
@@ -62,16 +62,7 @@
         @foreach (var item in Model.Setlists)
         {
             <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => item.SetlistId)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => item.ConcertId)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => item.DateOfPerformance)
-                    </th>
+                <tr>                    
                     <th>
                         @Html.DisplayNameFor(model => item.SetNumber)
                     </th>
@@ -81,33 +72,17 @@
                     <th></th>
                 </tr>          
                 
-                <tr>
+                <tr>                   
                     <td>
-                        @Html.DisplayFor(modelItem => item.SetlistId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ConcertId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateOfPerformance)
-                    </td>
-                    <th>
                         @Html.DisplayFor(modelItem => item.SetNumber)
-                    </th>
+                    </td>
                     <td>
                         @foreach (var song in item.SongsForSetlist)
                         {
                             <span>@song.Title, </span>
                         }
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.SetlistId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.SetlistId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.SetlistId })
-                    </td>
-                </tr>
-
-                
+                    </td>                   
+                </tr>          
 
             </table>
         }
