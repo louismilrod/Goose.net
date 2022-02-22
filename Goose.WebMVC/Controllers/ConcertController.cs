@@ -15,7 +15,7 @@ namespace Goose.WebMVC.Controllers
         public ActionResult Index()
         {
             var service = AnonymousConcertService();
-            var model = service.GetConcertSetlist_List();
+            var model = service.GetConcert_List();
             return View(model);
         }
 
