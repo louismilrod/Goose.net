@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Goose.Models.Concert_Models.ConcertSetlistListItem>
+﻿@model IEnumerable<Goose.Models.Concert_Models.ConcertListItem>
 
 @{
     ViewBag.Title = "Index";
@@ -29,7 +29,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Notes)
         </th>
-        
+        <th>
+            @Html.DisplayNameFor(model => model.Setlists)
+        </th>
+
         <th></th>
     </tr>
 
@@ -52,7 +55,34 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
-        </td>        
+        </td>
+        <td>
+            @foreach (var setlistDataForConcertDetail in item.Setlists)
+            {
+                <table class="table">
+                    <tr>
+                        <td>
+                            <div>
+
+                            <div>
+                                @Html.DisplayFor(modelItem => setlistDataForConcertDetail.SetNumber)<p>:</p>                                
+                                </div>
+                            @foreach (var song in setlistDataForConcertDetail.SongsForSetlist)
+                            {
+                                
+                                    <span>@Html.ActionLink(song.Title, "Details", "Song", new { id = song.SongId}, null)</span>
+                                    @*<span>@song.Title</span>*@
+                                
+                            }
+                            </div>
+                                                                                                 
+                            
+                        </td>
+                    </tr>                
+                </table>
+            }
+        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new {  id=item.ConcertId }) |
             @Html.ActionLink("Details", "Details", new {  id = item.ConcertId }) |
