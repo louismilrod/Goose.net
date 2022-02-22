@@ -23,10 +23,21 @@ namespace Goose.Models.Setlist_Models
         
         [Display(Name = "Date of Performance")]
         public DateTime DateOfPerformance { get; set; }        
-        [Display(Name = "Songs In Performance")]
-
         public string Location { get; set; }
+
+        [Display(Name = "Songs In Performance")]
         public List<SongDetail> SongsForSetlist { get; set; }
         
+    }
+
+    public class SetlistDataForConcertDetailView
+    {
+        public int SetlistId { get; set; }
+        [Display(Name = "Set Number")]
+        public SetType SetNumber { get; set; }
+        
+        [Display(Name = "Setlist")]
+        public List<SongDetail> SongsForSetlist { get; set; }
+
     }
 }
