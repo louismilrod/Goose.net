@@ -22,7 +22,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SetNumber)
-        </th>
+        </th> 
         <th>
             @Html.DisplayNameFor(model => model.SongsForSetlist)
         </th>
@@ -40,18 +40,18 @@
     <td>
         @Html.DisplayFor(modelItem => item.DateOfPerformance)
     </td>
-    <th>
+    <td>
         @Html.DisplayFor(modelItem => item.SetNumber)
-    </th>    
-    <td>
-        @foreach(var song in item.SongsForSetlist)
-                {
-                  <span>@song.Title, </span>          
-                }
     </td>
+    @foreach (var song in item.SongsForSetlist)
+    {
     <td>
-        @Html.ActionLink("Edit", "Edit", new {  id=item.SetlistId  }) |
-        @Html.ActionLink("Details", "Details", new {  id=item.SetlistId  }) |
+        @song.Title, 
+    </td>
+    }
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.SetlistId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.SetlistId }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.SetlistId })
     </td>
 </tr>

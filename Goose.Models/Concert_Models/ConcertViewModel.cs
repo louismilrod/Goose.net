@@ -1,5 +1,7 @@
 ﻿using Goose.Data;
 using Goose.Data.Data;
+using Goose.Models.Setlist_Models;
+using Goose.Models.Song_Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,7 +24,18 @@ namespace Goose.Models.Concert_Models
         public DateTime DateOfPerformance { get; set; }       
         public string Notes { get; set; }
         public string VenueName { get; set; }
+        public List<SetlistViewModel> Setlists { get; set; }
+        public List<SongDetail> Songs { get; set; }
+    }
 
-        public List<Setlist> Setlists { get; set; }
+    public class ConcertViewModelForConcertDetails
+    {
+        public int ConcertId { get; set; }
+        public string BandName { get; set; }
+        public string Location { get; set; }
+        public DateTime DateOfPerformance { get; set; }
+        public string Notes { get; set; }
+        public string VenueName { get; set; }
+        public List<SetlistDataForConcertDetailView> Setlists { get; set; }
     }
 }

@@ -37,6 +37,65 @@ namespace Goose.Services
             }
         }
 
+        //public IEnumerable<SongExtraDetails> GetSongOccurances(int songId)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var songsonsetlist = ctx.SongsJoinSetlist;
+        //        var setlist = ctx.Setlist;
+        //        //method to get song before
+        //        //method to get song after
+
+        //        List<SongExtraDetails> list = new List<SongExtraDetails>();
+        //        //find all the setlist w/ the song in it, loop through it
+        //        foreach (var item in songsonsetlist)
+        //        {
+        //            if (item.SongId == songId)
+        //            {
+        //                var setlistcontainingsong = setlist.Where(item2 => item2.SetlistId == item.SetlistId).FirstOrDefault();
+        //                var querysubtractposition = setlistcontainingsong.SongsForSetList.Where(s => s.PositionInSet == item.PositionInSet--);
+        //                //var queryaddposition = setlistcontainingsong.SongsForSetList.Select(s => s.PositionInSet == item.PositionInSet++);
+
+        //                if (setlistcontainingsong == null)
+        //                {
+        //                    return null;
+        //                }
+
+
+        //                SongExtraDetails detail = new SongExtraDetails()
+        //                {
+        //                    SongAfter = querysubtractposition.Single(s => SongExtraDetails())
+
+        //                };
+
+        //                list.Add(detail);
+
+        //            }
+
+
+        //        }
+        //        var sortedlist = list.OrderBy(songposition => songposition.PositionInSet);
+        //        sortedlist..Where()
+        //        //list songs by position
+        //        //????
+        //        //get the song before/after in that set object
+
+        //        var query = ctx.Songs.Select(s => new SongExtraDetails
+        //        {
+        //            DateOfPerformance = s.SongJoinSetlist.Setlist.Concert.PerformanceDate,
+        //            Venue = s.SongJoinSetlist.Setlist.Concert.VenueName,
+        //            //Gap = number of occurances of a song in the db since last occurance of the song, look at the all the concerts by dateofperformance and count the performances inbetween or before
+        //            Set = s.SongJoinSetlist.Setlist.SetNumber,
+        //            SongBefore = before,
+        //            SongAfter = occurance,
+
+        //        });
+
+        //        return query.ToArray();
+        //    }
+        //}
+
+
         public bool CreateSong(SongCreate model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -61,11 +120,12 @@ namespace Goose.Services
 
                 return new SongDetail
                 {
-                    SongId = entity.SongId,
+                    //SongId = entity.SongId,
                     Title = entity.Title,
                     Artist = entity.Artist,
                     OriginalArtist = entity.OriginalArtist,
-                    Lyrics = entity.Lyrics
+                    Lyrics = entity.Lyrics,
+                    //TimesPlayed = ctx.SongsJoinSetlist.Where(f=>f.SongId == id).Count()
                 };
             }
         }

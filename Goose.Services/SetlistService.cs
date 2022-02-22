@@ -1,6 +1,7 @@
 ﻿using Goose.Data;
 using Goose.Data.Data;
 using Goose.Models.Setlist_Models;
+using Goose.Models.Song_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,10 @@ namespace Goose.Services
                     ConcertId = s.ConcertId,
                     SetlistId = s.SetlistId,
                     SetNumber = s.SetNumber,
-                    SongsForSetlist = s.SongsForSetList.Select(g=>g.Song).ToList(), //entity.SongsForSetList.Select(s=>s.Song).ToList()
+                    SongsForSetlist = s.SongsForSetList.Select(g=> new SongDetail
+                    {
+                        Title = g.Song.Title,
+                    }).ToList(), 
                     Location = s.Concert.Location,
                     DateOfPerformance = s.Concert.PerformanceDate
                 }) ;
@@ -70,7 +74,10 @@ namespace Goose.Services
                     ConcertId = entity.ConcertId,
                     SetlistId = entity.SetlistId,
                     SetNumber = entity.SetNumber,
-                    SongsForSetlist = entity.SongsForSetList.Select(s => s.Song).ToList(), //.select for list of songs
+                    SongsForSetlist = entity.SongsForSetList.Select(s =>new SongDetail
+                    {
+                        Title = s.Song.Title
+                    }).ToList(), //.select for list of songs
                     DateOfPerformance = entity.Concert.PerformanceDate
                 };
             }

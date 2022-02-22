@@ -17,5 +17,6 @@ namespace Goose.Models.Song_Models
         public string Artist { get; set; }
         public string Lyrics { get; set; }
         public string OriginalArtist { get; set; }
+        public int TimesPlayed { get; set; }
     }
 }

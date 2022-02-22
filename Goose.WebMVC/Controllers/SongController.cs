@@ -12,11 +12,27 @@ namespace Goose.WebMVC.Controllers
     public class SongController : Controller
     {
         // GET: Song
-        public ActionResult Index()
+        public ActionResult Index(string sortorder)
         {
+            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortorder) ? "title_desc" : "";
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortorder) ? "id_desc" : "";
+            
             var service = AnonymousServiceView();
             var model = service.GetSongLists();
-            return View(model);
+            var songs = from s in model select s;
+            switch (sortorder)
+            {
+                case "title_desc":
+                   songs = model.OrderByDescending(a => a.Title);
+                    break;
+                case "id_desc":
+                    songs = model.OrderBy(a => a.SongId);
+                    break;
+                default:
+                    songs = model.OrderBy(b=>b.Title);
+                    break;
+            }
+            return View(songs.ToList());
         }
 
         public ActionResult Create()
