@@ -17,5 +17,8 @@ namespace Goose.Models.Song_Models
         public SetType Set { get; set; }
         public Song SongBefore { get; set; }
         public Song SongAfter { get; set; }
+        public int PositionInSet { get; set; }
+        public string Title { get; set; }
+
     }
 }
