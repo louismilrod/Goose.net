@@ -27,4 +27,15 @@ namespace Goose.Models.Concert_Models
         public List<SetlistViewModel> Setlists { get; set; }
         public List<SongDetail> Songs { get; set; }
     }
+
+    public class ConcertViewModelForConcertDetails
+    {
+        public int ConcertId { get; set; }
+        public string BandName { get; set; }
+        public string Location { get; set; }
+        public DateTime DateOfPerformance { get; set; }
+        public string Notes { get; set; }
+        public string VenueName { get; set; }
+        public List<SetlistDataForConcertDetailView> Setlists { get; set; }
+    }
 }
