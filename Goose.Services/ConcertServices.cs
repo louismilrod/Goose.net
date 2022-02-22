@@ -48,14 +48,6 @@ namespace Goose.Services
                             SongId = b.Song.SongId
                         }).ToList()
                     }).ToList(),
-
-
-                    //maybe still need set one, set two
-
-                    //Set_Two = s.Set_2.SongsForSetList.Select(g=>g.Song).ToList(),
-                    //Set_Three = s.Set_3.SongsForSetList.Select(g=>g.Song).ToList(),
-                    //Encore = s.Encore.SongsForSetList.Select(g=>g.Song).ToList(),
-
                 });
 
                 return query.ToArray();
