@@ -18,7 +18,7 @@ namespace Goose.Models.Setlist_Models
         [Display(Name = "Concert Id")]
         public int ConcertId { get; set; }
         [Required]
-        [Display(Name = "First(1) Second(2) Third Set(3) or Encore(4)")]
+        [Display(Name = "Set Number")]
         public SetType SetNumber {get; set;}
         
         [Display(Name = "Date of Performance")]
