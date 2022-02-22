@@ -6,16 +6,18 @@
 
 <h2>Index</h2>
 
+<p> </p>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SongId)
+            @Html.ActionLink("SongId", "Index", new {sortOrder = ViewBag.IdSortParm})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Artist)
@@ -43,7 +45,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new {  id=item.SongId  }) |
             @Html.ActionLink("Details", "Details", new { id = item.SongId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.SongId })
+            @Html.ActionLink("Delete", "Delete", new { id = item.SongId }) |
             @Html.ActionLink("Occurances", "Occurances", new { id = item.SongId })
         </td>
     </tr>
