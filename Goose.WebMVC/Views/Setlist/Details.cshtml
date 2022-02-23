@@ -1,0 +1,55 @@
+﻿@model Goose.Models.Setlist_Models.SetlistViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SetlistViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SetlistId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SetlistId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcertId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConcertId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfPerformance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfPerformance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SongsForSetlist)
+        </dt>
+        
+        @foreach (var item in Model.SongsForSetlist)
+        {
+            <dd>
+                <p>@item.Title</p>
+                 @*foreach*@
+            </dd>
+
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SetlistId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

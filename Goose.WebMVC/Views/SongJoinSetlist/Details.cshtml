@@ -1,0 +1,50 @@
+﻿@model Goose.Models.SongsJoinSetlistViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SongsJoinSetlistViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SongsJoinSetlistId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SongsJoinSetlistId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SongId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SongId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SetlistId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SetlistId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PositionInSet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PositionInSet)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SongsJoinSetlistId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

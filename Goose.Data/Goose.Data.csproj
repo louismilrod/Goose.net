@@ -57,12 +57,75 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Concert.cs" />
+    <Compile Include="Data\Setlist.cs" />
+    <Compile Include="Data\SongsJoinSetlist.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202202151813370_InitialCreate.cs" />
+    <Compile Include="Migrations\202202151813370_InitialCreate.designer.cs">
+      <DependentUpon>202202151813370_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202152112355_AddedSetList_and_SetListJoiningTable.cs" />
+    <Compile Include="Migrations\202202152112355_AddedSetList_and_SetListJoiningTable.designer.cs">
+      <DependentUpon>202202152112355_AddedSetList_and_SetListJoiningTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202161451115_AddedDateOfPerformanceToSet.cs" />
+    <Compile Include="Migrations\202202161451115_AddedDateOfPerformanceToSet.designer.cs">
+      <DependentUpon>202202161451115_AddedDateOfPerformanceToSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202171535435_ConcertIdImplemented.cs" />
+    <Compile Include="Migrations\202202171535435_ConcertIdImplemented.designer.cs">
+      <DependentUpon>202202171535435_ConcertIdImplemented.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202171651109_AddedConcertDataLayer.cs" />
+    <Compile Include="Migrations\202202171651109_AddedConcertDataLayer.designer.cs">
+      <DependentUpon>202202171651109_AddedConcertDataLayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202181530476_IcollectionSetlistToConcerts.cs" />
+    <Compile Include="Migrations\202202181530476_IcollectionSetlistToConcerts.designer.cs">
+      <DependentUpon>202202181530476_IcollectionSetlistToConcerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202201742409_RemovedDateTimeFromSetlist.cs" />
+    <Compile Include="Migrations\202202201742409_RemovedDateTimeFromSetlist.designer.cs">
+      <DependentUpon>202202201742409_RemovedDateTimeFromSetlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202202001287_RemovedNulliableConcertIdFromSetlist.cs" />
+    <Compile Include="Migrations\202202202001287_RemovedNulliableConcertIdFromSetlist.designer.cs">
+      <DependentUpon>202202202001287_RemovedNulliableConcertIdFromSetlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Data\Song.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202202151813370_InitialCreate.resx">
+      <DependentUpon>202202151813370_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202152112355_AddedSetList_and_SetListJoiningTable.resx">
+      <DependentUpon>202202152112355_AddedSetList_and_SetListJoiningTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202161451115_AddedDateOfPerformanceToSet.resx">
+      <DependentUpon>202202161451115_AddedDateOfPerformanceToSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202171535435_ConcertIdImplemented.resx">
+      <DependentUpon>202202171535435_ConcertIdImplemented.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202171651109_AddedConcertDataLayer.resx">
+      <DependentUpon>202202171651109_AddedConcertDataLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202181530476_IcollectionSetlistToConcerts.resx">
+      <DependentUpon>202202181530476_IcollectionSetlistToConcerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202201742409_RemovedDateTimeFromSetlist.resx">
+      <DependentUpon>202202201742409_RemovedDateTimeFromSetlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202202001287_RemovedNulliableConcertIdFromSetlist.resx">
+      <DependentUpon>202202202001287_RemovedNulliableConcertIdFromSetlist.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

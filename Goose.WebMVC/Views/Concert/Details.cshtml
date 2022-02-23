@@ -1,0 +1,94 @@
+﻿@model Goose.Models.Concert_Models.ConcertViewModelForConcertDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ConcertViewModel</h4>
+    <dl class="dl-horizontal">
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcertId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConcertId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfPerformance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfPerformance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueName)
+        </dd>
+
+    </dl>
+        @foreach (var item in Model.Setlists)
+        {
+            <table class="table">
+                <tr>                    
+                    <th>
+                        @Html.DisplayNameFor(model => item.SetNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => item.SongsForSetlist)
+                    </th>
+                    <th></th>
+                </tr>          
+                
+                <tr>                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SetNumber)
+                    </td>
+                    <td>
+                        @foreach (var song in item.SongsForSetlist)
+                        {
+                            <span>@song.Title, </span>
+                        }
+                    </td>                   
+                </tr>          
+
+            </table>
+        }
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

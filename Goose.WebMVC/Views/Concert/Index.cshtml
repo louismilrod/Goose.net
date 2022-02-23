@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Goose.Models.Concert_Models.ConcertListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ConcertId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VenueName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfPerformance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Setlists)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConcertId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BandName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VenueName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfPerformance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @foreach (var setlistDataForConcertDetail in item.Setlists)
+            {
+                <table class="table">
+                    <tr>
+                        <td>
+                            <div>
+
+                            <div>
+                                @Html.DisplayFor(modelItem => setlistDataForConcertDetail.SetNumber)<p>:</p>                                
+                                </div>
+                            @foreach (var song in setlistDataForConcertDetail.SongsForSetlist)
+                            {
+                                
+                                    <span>@Html.ActionLink(song.Title, "Details", "Song", new { id = song.SongId}, null)</span>
+                                    @*<span>@song.Title</span>*@
+                                
+                            }
+                            </div>
+                                                                                                 
+                            
+                        </td>
+                    </tr>                
+                </table>
+            }
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.ConcertId }) |
+            @Html.ActionLink("Details", "Details", new {  id = item.ConcertId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ConcertId })
+        </td>
+    </tr>
+}
+
+</table>
