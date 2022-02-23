@@ -84,7 +84,7 @@ namespace Goose.Services
 
                 return new SongDetail
                 {
-                    //SongId = entity.SongId,
+                    SongId = entity.SongId,
                     Title = entity.Title,
                     Artist = entity.Artist,
                     OriginalArtist = entity.OriginalArtist,
@@ -100,7 +100,7 @@ namespace Goose.Services
             {
                 var entity = ctx.Songs.Single(s => s.SongId == model.SongId);
 
-                
+                //entity.SongId = model.SongId;
                 entity.Title = model.Title;
                 entity.Artist = model.Artist;
                 entity.OriginalArtist = model.OriginalArtist;
