@@ -24,6 +24,7 @@ namespace Goose.Models.Concert_Models
         [Required]
         public DateTime DateOfPerformance { get; set; }       
         public string Notes { get; set; }
-        public string VenueName { get; set; }        
+        public string VenueName { get; set; }
+        public List<SetlistViewModel> Setlists { get; set; }
     }
 }

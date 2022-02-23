@@ -1,6 +1,7 @@
 ﻿using Goose.Data;
 using Goose.Data.Data;
 using Goose.Models.Setlist_Models;
+using Goose.Models.Setlist_Modles;
 using Goose.Models.Song_Models;
 using System;
 using System.Collections.Generic;
@@ -46,13 +47,12 @@ namespace Goose.Services
             }
         }
 
-        public bool CreateSetlist(SetlistViewModel model)
+        public bool CreateSetlist(SetlistCreate model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var setlist = new Setlist()
                 {
-                    SetlistId= model.SetlistId,
                     ConcertId = model.ConcertId,                    
                     SetNumber = model.SetNumber,
                 };                               

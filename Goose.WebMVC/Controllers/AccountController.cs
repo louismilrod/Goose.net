@@ -12,6 +12,9 @@ using Goose.WebMVC.Models;
 using Goose.Data;
 using Goose.Services;
 using Goose.Models;
+using Goose.Models.User_Modles;
+using Goose.Models.User_Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Goose.WebMVC.Controllers
 {
@@ -55,24 +58,6 @@ namespace Goose.WebMVC.Controllers
             }
         }
 
-        //Get: User Index Page
-        public ActionResult Index()
-        {
-            var userService = new UserService();
-            var users = userService.GetAllUsers();
-            
-            var userList = users.Select(u =>
-            {
-                /* do some stuff */
-                return new UserListItem()
-                {
-                    UserId = u.Id,
-                    UserName = u.UserName,
-                    Email = u.Email,
-                };
-            }).ToList();
-            return View(userList); 
-        }
 
         //
         // GET: /Account/Login
@@ -445,6 +430,112 @@ namespace Goose.WebMVC.Controllers
             base.Dispose(disposing);
         }
 
+        //Get: User Index Page
+        public ActionResult Index()
+        {
+            var userService = new UserService();
+            var users = userService.GetAllUsers();
+
+            //using (var ctx = new ApplicationDbContext())
+            //{
+            //    ctx.Roles.Add(new IdentityRole()
+            //    {
+            //        Name = "admin"
+            //    });
+            //    ctx.SaveChanges();
+            //}
+            
+            
+            var userList = users.Select(u =>
+            {
+                /* do some stuff */
+                return new UserListItem()
+                {
+                    UserId = u.Id,
+                    UserName = u.UserName,
+                    Email = u.Email,
+                };
+            }).ToList();
+            return View(userList); 
+        }
+
+        public ActionResult Details(string userId)
+        {
+            ApplicationUser User = UserManager.FindById(userId);
+            var userDetailModel = new UserDetail()
+            {
+                UserName = User.UserName,
+                UserEmail = User.Email,
+                UserId = User.Id,
+                Role = UserManager.GetRoles(userId).FirstOrDefault()
+            };
+
+            return View(userDetailModel);
+        }
+
+        public ActionResult Edit (string userId)
+        {
+            ApplicationUser User = UserManager.FindById(userId);
+            var UserRoles = UserManager.GetRoles(userId);
+            var userEditModel = new UserEdit()
+            {
+                UserName = User.UserName,
+                UserEmail = User.Email,
+                UserId = User.Id,
+                IsAdmin = UserRoles.Any(r => r == "admin")
+            };
+
+            return View(userEditModel);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit (string userId, UserEdit model)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var currentRoles = UserManager.GetRoles(currentUserId);
+            var UserRoles = UserManager.GetRoles(userId);
+            bool UserIsAdmin = UserRoles.Any(r => r == "admin");
+
+            if (!currentRoles.Contains("admin"))
+            {
+                ModelState.AddModelError("", "YOu do not have permission to do this");
+
+                return View(model);
+            }
+
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.UserId != userId)
+            {
+                ModelState.AddModelError("", "Id mismatch");
+            }
+            
+            ApplicationUser user = UserManager.FindById(userId);
+            user.UserName = model.UserName;
+
+            if (model.IsAdmin)
+            {
+                UserManager.AddToRole(userId, "admin");
+            }
+
+            if (UserIsAdmin && !model.IsAdmin)
+            {
+                if (userId == currentUserId)
+                {
+                    ModelState.AddModelError("", "You cannot de-op yourself");
+                    return View(model);
+                }
+                UserManager.RemoveFromRole(userId, "admin");
+            }
+
+            if (UserManager.Update(user).Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "User could not be updated");
+            return View(model);
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
