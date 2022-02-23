@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConcertsAttendedModel.cs" />
     <Compile Include="Concert_Models\ConcertDetails.cs" />
     <Compile Include="Concert_Models\ConcertListItem.cs" />
     <Compile Include="Concert_Models\ConcertViewModel.cs" />
