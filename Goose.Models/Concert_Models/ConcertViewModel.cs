@@ -20,22 +20,10 @@ namespace Goose.Models.Concert_Models
         
         [Required]
         public string Location { get; set; }
+
         [Required]
         public DateTime DateOfPerformance { get; set; }       
         public string Notes { get; set; }
-        public string VenueName { get; set; }
-        public List<SetlistViewModel> Setlists { get; set; }
-        public List<SongDetail> Songs { get; set; }
-    }
-
-    public class ConcertViewModelForConcertDetails
-    {
-        public int ConcertId { get; set; }
-        public string BandName { get; set; }
-        public string Location { get; set; }
-        public DateTime DateOfPerformance { get; set; }
-        public string Notes { get; set; }
-        public string VenueName { get; set; }
-        public List<SetlistDataForConcertDetailView> Setlists { get; set; }
+        public string VenueName { get; set; }        
     }
 }
