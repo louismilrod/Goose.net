@@ -169,12 +169,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ConcertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SetlistController.cs" />
-    <Compile Include="Controllers\SongController.cs" />
-    <Compile Include="Controllers\SongJoinSetlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -239,31 +235,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Song\Index.cshtml" />
-    <Content Include="Views\Song\Create.cshtml" />
-    <Content Include="Views\Song\Details.cshtml" />
-    <Content Include="Views\Song\Delete.cshtml" />
-    <Content Include="Views\SongJoinSetlist\Delete.cshtml" />
-    <Content Include="Views\SongJoinSetlist\Create.cshtml" />
-    <Content Include="Views\SongJoinSetlist\Details.cshtml" />
-    <Content Include="Views\SongJoinSetlist\Index.cshtml" />
-    <Content Include="Views\Song\Edit.cshtml" />
-    <Content Include="Views\Setlist\Details.cshtml" />
-    <Content Include="Views\Setlist\Delete.cshtml" />
-    <Content Include="Views\Setlist\Index.cshtml" />
-    <Content Include="Views\Concert\Create.cshtml" />
-    <Content Include="Views\Setlist\Edit.cshtml" />
-    <Content Include="Views\SongJoinSetlist\Edit.cshtml" />
-    <Content Include="Views\Concert\Index.cshtml" />
-    <Content Include="Views\Concert\Edit.cshtml" />
-    <Content Include="Views\Concert\Delete.cshtml" />
-    <Content Include="Views\Concert\Details.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Setlist\Create.cshtml" />
-    <Content Include="Views\Account\Details.cshtml" />
-    <Content Include="Views\Account\Edit.cshtml" />
-    <Content Include="Views\Home\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
