@@ -110,6 +110,18 @@ namespace Goose.Services
             }          
         }
 
+        public SelectList SelectListPopulatorEdit()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                SongsJoinSetlistViewModel model = new SongsJoinSetlistViewModel();
+                var songs = ctx.Songs.OrderBy(x => x.Title).Select(x => x.SongId).ToList();
+                model.SelectListSong = new SelectList(songs, "SongId", "Title");
+
+                return model.SelectListSong;
+            }
+        }
+
         public SelectList SelectListPopulatorPositionInSet()
         {
             List<int> positionsinset = new List<int>();
@@ -119,8 +131,7 @@ namespace Goose.Services
             }
             SongsJoinSetlistViewModel model = new SongsJoinSetlistViewModel();
             model.SelectPositionInSet = new SelectList(positionsinset);
-            return model.SelectPositionInSet;
-            
+            return model.SelectPositionInSet;    
 
         }
     }
