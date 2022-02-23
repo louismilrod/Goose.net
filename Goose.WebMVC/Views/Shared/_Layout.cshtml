@@ -20,13 +20,23 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <ul class="nav navbar-nav">                    
                     <li>@Html.ActionLink("Songs", "Index", "Song")</li>
-                    <li>@Html.ActionLink("Setlists", "Index", "Setlist")</li>
-                    <li>@Html.ActionLink("Songs Join Setlist", "Index", "SongJoinSetlist")</li>
                     <li>@Html.ActionLink("Concerts", "Index", "Concert")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Account")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        //if (Roles.IsUserInRole("admin"))
+                        
+                            <li>@Html.ActionLink("Songs Join Setlist", "Index", "SongJoinSetlist")</li>
+                            <li> @Html.ActionLink("Setlists", "Index", "Setlist")</li>
+                            <li>@Html.ActionLink("Users", "Index", "Account")</li>
+                        
+
+                        
+
+                        
+                    }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
