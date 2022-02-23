@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Concert.cs" />
+    <Compile Include="Data\ConcertsAttended.cs" />
     <Compile Include="Data\Setlist.cs" />
     <Compile Include="Data\SongsJoinSetlist.cs" />
     <Compile Include="IdentityModels.cs" />
@@ -93,6 +94,10 @@
     <Compile Include="Migrations\202202202001287_RemovedNulliableConcertIdFromSetlist.designer.cs">
       <DependentUpon>202202202001287_RemovedNulliableConcertIdFromSetlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202232128535_ConcertsAttended.cs" />
+    <Compile Include="Migrations\202202232128535_ConcertsAttended.designer.cs">
+      <DependentUpon>202202232128535_ConcertsAttended.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Song.cs" />
@@ -125,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202202202001287_RemovedNulliableConcertIdFromSetlist.resx">
       <DependentUpon>202202202001287_RemovedNulliableConcertIdFromSetlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202232128535_ConcertsAttended.resx">
+      <DependentUpon>202202232128535_ConcertsAttended.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

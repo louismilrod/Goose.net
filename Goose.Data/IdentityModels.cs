@@ -38,6 +38,7 @@ namespace Goose.Data
         public DbSet<Setlist> Setlist { get; set; }
         public DbSet<SongsJoinSetlist> SongsJoinSetlist { get; set; }
         public DbSet<Concert> Concerts { get; set; }
+        public DbSet<ConcertsAttended> ConcertsAttended { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
