@@ -73,13 +73,13 @@ namespace Goose.Services
             }
         }
 
-        public ConcertViewModelForConcertDetails GetConcertById(int id)
+        public ConcertDetails GetConcertById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Concerts.Single(c => c.ConcertId == id);
 
-                return new ConcertViewModelForConcertDetails
+                return new ConcertDetails
                 {
                     ConcertId = entity.ConcertId,
                     BandName = entity.BandName,

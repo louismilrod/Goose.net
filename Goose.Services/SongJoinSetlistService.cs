@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Goose.Services
 {
@@ -22,12 +23,15 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var titles = ctx.Songs.Select(x => x.Title).ToList();
+
                 var query = ctx.SongsJoinSetlist.Select(s => new SongsJoinSetlistViewModel
                 {
                     SongsJoinSetlistId = s.SongsJoinSetlistId,
-                    SetlistId = s.SetlistId,
+                    SetlistId = s.SetlistId,                    
                     SongId = s.SongId,
-                    PositionInSet = s.PositionInSet
+                    Title = s.Song.Title,
+                    PositionInSet = s.PositionInSet,
                 });
 
                 return query.ToArray();
@@ -38,12 +42,13 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+
                 var joiningsongtosetlist = new SongsJoinSetlist()
                 {
                     
                     SetlistId = model.SetlistId,
                     SongId = model.SongId,
-                    PositionInSet = model.PositionInSet
+                    PositionInSet = model.PositionInSet,                 
                 };
 
                 ctx.SongsJoinSetlist.Add(joiningsongtosetlist);
@@ -91,6 +96,32 @@ namespace Goose.Services
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+
+        public SelectList SelectListPopulator()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                SongsJoinSetlistViewModel model = new SongsJoinSetlistViewModel();
+                var songs = ctx.Songs.ToList().OrderBy(x=>x.Title);
+                model.SelectListSong = new SelectList(songs, "SongId", "Title");
+
+                return model.SelectListSong;
+            }          
+        }
+
+        public SelectList SelectListPopulatorPositionInSet()
+        {
+            List<int> positionsinset = new List<int>();
+            for (int i = 1; i < 26; i++)
+            {
+                positionsinset.Add(i);
+            }
+            SongsJoinSetlistViewModel model = new SongsJoinSetlistViewModel();
+            model.SelectPositionInSet = new SelectList(positionsinset);
+            return model.SelectPositionInSet;
+            
+
         }
     }
 }

@@ -31,7 +31,15 @@ namespace Goose.WebMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.Title = "New Song Joining Setlist Table";
-            return View();
+            var service = CreateSongJoinSetlistService();
+            SelectList songs_for_selectlist = service.SelectListPopulator();
+            SelectList integers_for_selectlist = service.SelectListPopulatorPositionInSet();
+            SongsJoinSetlistViewModel model = new SongsJoinSetlistViewModel()
+            {
+                SelectListSong = songs_for_selectlist,
+                SelectPositionInSet = integers_for_selectlist,
+            };
+            return View(model);
         }
 
         //POST: SongJoinSetlist/Create
@@ -58,12 +66,16 @@ namespace Goose.WebMVC.Controllers
         {
             var service = CreateSongJoinSetlistService();
             var detail = service.GetSongsJoinSetlistById(id);
+            var songselectlist = service.SelectListPopulator();
+            var positioninsetselectlist = service.SelectListPopulatorPositionInSet();
             var model = new SongsJoinSetlistViewModel
             {
                 SongsJoinSetlistId = detail.SongsJoinSetlistId,
                 SetlistId = detail.SetlistId,
                 SongId = detail.SongId,
-                PositionInSet = detail.PositionInSet
+                PositionInSet = detail.PositionInSet,
+                SelectListSong = songselectlist,
+                SelectPositionInSet = positioninsetselectlist
             };
 
             return View(model);

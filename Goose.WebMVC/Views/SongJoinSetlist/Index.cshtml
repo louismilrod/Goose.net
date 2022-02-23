@@ -18,6 +18,9 @@
             @Html.DisplayNameFor(model => model.SongId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SetlistId)
         </th>
         <th>
@@ -27,25 +30,28 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SongsJoinSetlistId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SongId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SetlistId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PositionInSet)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SongsJoinSetlistId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.SongsJoinSetlistId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.SongsJoinSetlistId })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.SongsJoinSetlistId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SongId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SetlistId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PositionInSet)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.SongsJoinSetlistId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.SongsJoinSetlistId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.SongsJoinSetlistId })
+    </td>
+</tr>
 }
 
 </table>
