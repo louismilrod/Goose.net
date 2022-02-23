@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Goose.WebMVC.Models;
 using Goose.Data;
+using Goose.Services;
+using Goose.Models;
 
 namespace Goose.WebMVC.Controllers
 {
@@ -51,6 +53,25 @@ namespace Goose.WebMVC.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        //Get: User Index Page
+        public ActionResult Index()
+        {
+            var userService = new UserService();
+            var users = userService.GetAllUsers();
+            
+            var userList = users.Select(u =>
+            {
+                /* do some stuff */
+                return new UserListItem()
+                {
+                    UserId = u.Id,
+                    UserName = u.UserName,
+                    Email = u.Email,
+                };
+            }).ToList();
+            return View(userList); 
         }
 
         //
