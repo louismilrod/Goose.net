@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Goose.Data;
+using Goose.Models.Song_Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Goose.Models
 {
@@ -16,6 +19,10 @@ namespace Goose.Models
         [Required]
         public int SetlistId { get; set; }
         [Required]
-        public int PositionInSet { get; set; }
+        [Range(1, 25)]
+        public int PositionInSet { get; set; }        
+        public SelectList SelectListSong { get; set; }
+        public SelectList SelectPositionInSet { get; set; }
+        public string Title { get; set; }
     }
 }
