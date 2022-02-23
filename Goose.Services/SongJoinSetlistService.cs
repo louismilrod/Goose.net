@@ -103,10 +103,10 @@ namespace Goose.Services
             using (var ctx = new ApplicationDbContext())
             {
                 SongsJoinSetlistViewModel model = new SongsJoinSetlistViewModel();
-                var songs = ctx.Songs.ToList();
+                var songs = ctx.Songs.ToList().OrderBy(x=>x.Title);
                 model.SelectListSong = new SelectList(songs, "SongId", "Title");
 
-               return model.SelectListSong;
+                return model.SelectListSong;
             }          
         }
 
