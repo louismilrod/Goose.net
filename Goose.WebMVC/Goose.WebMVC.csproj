@@ -251,7 +251,6 @@
     <Content Include="Views\Setlist\Details.cshtml" />
     <Content Include="Views\Setlist\Delete.cshtml" />
     <Content Include="Views\Setlist\Index.cshtml" />
-    <Content Include="Views\Setlist\Create.cshtml" />
     <Content Include="Views\Concert\Create.cshtml" />
     <Content Include="Views\Setlist\Edit.cshtml" />
     <Content Include="Views\SongJoinSetlist\Edit.cshtml" />
@@ -261,6 +260,10 @@
     <Content Include="Views\Concert\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Setlist\Create.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
