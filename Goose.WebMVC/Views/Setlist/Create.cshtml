@@ -1,4 +1,4 @@
-﻿@model Goose.Models.Setlist_Models.SetlistViewModel
+﻿@model Goose.Models.Setlist_Modles.SetlistCreate
 
 @{
     ViewBag.Title = "Create";
@@ -12,11 +12,9 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>SetlistViewModel</h4>
+    <h4>SetlistCreate</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
     <div class="form-group">
         @Html.LabelFor(model => model.ConcertId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -24,7 +22,6 @@
             @Html.ValidationMessageFor(model => model.ConcertId, "", new { @class = "text-danger" })
         </div>
     </div>
-   
 
     <div class="form-group">
         @Html.LabelFor(model => model.SetNumber, htmlAttributes: new { @class = "control-label col-md-2" })
