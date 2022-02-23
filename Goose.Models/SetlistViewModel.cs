@@ -30,14 +30,5 @@ namespace Goose.Models.Setlist_Models
         
     }
 
-    public class SetlistDataForConcertDetailView
-    {
-        public int SetlistId { get; set; }
-        [Display(Name = "Set Number")]
-        public SetType SetNumber { get; set; }
-        
-        [Display(Name = "Setlist")]
-        public List<SongDetail> SongsForSetlist { get; set; }
-
-    }
+    
 }
