@@ -1,4 +1,5 @@
 ﻿using Goose.Models.Setlist_Models;
+using Goose.Models.Setlist_Modles;
 using Goose.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -36,7 +37,7 @@ namespace Goose.WebMVC.Controllers
 
         // POST: Setlist/Create
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create(SetlistViewModel model)
+        public ActionResult Create(SetlistCreate model)
         {
             if(!ModelState.IsValid) return View(model);
 
