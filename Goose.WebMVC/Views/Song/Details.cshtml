@@ -9,7 +9,7 @@
 <div>
     <h4>SongDetail</h4>
     <hr />
-    <dl class="dl-horizontal">       
+    <dl class="dl-horizontal">
 
         <dt>
             @Html.DisplayNameFor(model => model.Title)
@@ -42,6 +42,50 @@
         <dd>
             @Html.DisplayFor(model => model.OriginalArtist)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstTimePlayed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstTimePlayed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastTimePlayed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastTimePlayed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimesPlayed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimesPlayed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PercentageOfShows)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PercentageOfShows)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenuesPerformedAt)
+        </dt>
+        @foreach (var item in Model.VenuesPerformedAt)
+        {
+            <dd>
+                @Html.DisplayFor(model => model.VenuesPerformedAt)
+            </dd>
+        }
+
+
 
     </dl>
 </div>
