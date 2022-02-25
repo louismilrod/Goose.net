@@ -498,7 +498,7 @@ namespace Goose.WebMVC.Controllers
 
             if (!currentRoles.Contains("admin"))
             {
-                ModelState.AddModelError("", "YOu do not have permission to do this");
+                ModelState.AddModelError("", "You do not have permission to do this");
 
                 return View(model);
             }
