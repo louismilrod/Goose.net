@@ -84,9 +84,25 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.ConcertId }) |
-            @Html.ActionLink("Details", "Details", new {  id = item.ConcertId }) |
+             <span>@item.InAttendance</span>
+            
+            @Html.ActionLink("Edit", "Edit", new { id = item.ConcertId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ConcertId }) |
+            @*@Html.ActionLink("I went to that", "Attended", new { id = item.ConcertId }) |
+            @Html.ActionLink("I did not go that", "Unattend", new { id = item.ConcertId }) |*@
+            @if (item.InAttendance == true)
+            {
+                Html.ActionLink("I did not go to that", "Unattend", new { id = item.ConcertId }); <p>|</p>
+            }
+            @if (item.InAttendance == false)
+            {
+             @Html.ActionLink("I went to that", "Attended", new { id = item.ConcertId }); <p>|</p>
+            }
+
+            
+
             @Html.ActionLink("Delete", "Delete", new { id = item.ConcertId })
+        
         </td>
     </tr>
 }
