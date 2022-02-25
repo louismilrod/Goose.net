@@ -18,5 +18,6 @@ namespace Goose.Models.Concert_Models
         public DateTime DateOfPerformance { get; set; }
         public string Notes { get; set; }
         public List<SetlistDataForConcertDetailView> Setlists { get; set; }
+        public bool InAttendance { get; set; }
     }
 }
