@@ -18,5 +18,10 @@ namespace Goose.Models.Song_Models
         public string Lyrics { get; set; }
         public string OriginalArtist { get; set; }
         public int TimesPlayed { get; set; }
+        public DateTime FirstTimePlayed { get; set; }
+        public DateTime LastTimePlayed { get; set; }        
+        public List<string> VenuesPerformedAt { get; set; }
+        public double PercentageOfShows { get; set; }
+
     }
 }
