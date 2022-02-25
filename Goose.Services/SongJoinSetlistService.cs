@@ -114,11 +114,14 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                List<int> positionsinset = new List<int>();
+                for (int i = 1; i < 26; i++)
+                {
+                    positionsinset.Add(i);
+                }
                 SongsJoinSetlistViewModel model = new SongsJoinSetlistViewModel();
-                var songs = ctx.Songs.OrderBy(x => x.Title).Select(x => x.SongId).ToList();
-                model.SelectListSong = new SelectList(songs, "SongId", "Title");
-
-                return model.SelectListSong;
+                model.SelectPositionInSet = new SelectList(positionsinset, "PositionInSet");
+                return model.SelectPositionInSet;
             }
         }
 
@@ -131,7 +134,7 @@ namespace Goose.Services
             }
             SongsJoinSetlistViewModel model = new SongsJoinSetlistViewModel();
             model.SelectPositionInSet = new SelectList(positionsinset);
-            return model.SelectPositionInSet;    
+            return model.SelectPositionInSet;
 
         }
     }
