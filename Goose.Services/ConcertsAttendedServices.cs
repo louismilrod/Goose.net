@@ -1,4 +1,5 @@
 ﻿using Goose.Data;
+using Goose.Data.Data;
 using Goose.Models;
 using Goose.Models.Concert_Models;
 using Goose.Models.Song_Models;
@@ -23,36 +24,35 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                
                 var concerts = ctx.Concerts;
-                var query = ctx.ConcertsAttended.Where(x => x.UserId == _userId).Select(a => new ConcertsAttendedModel
+                var query = ctx.ConcertsAttended.Select(a => new ConcertsAttendedModel
                 {
-                    ConcertListItems = concerts.Select(b => new ConcertListItem
+                    UserId = a.UserId,
+                    ConcertId = a.ConcertId,                    
+                    Location = a.Concert.Location,
+                    BandName = a.Concert.BandName,
+                    VenueName = a.Concert.VenueName,
+                    DateOfPerformance = a.Concert.PerformanceDate,
+                    Notes = a.Concert.Notes,
+                    InAttendance = true,
+                    Setlists = a.Concert.Setlists.Select(b => new SetlistDataForConcertDetailView
                     {
-                        BandName = b.BandName,
-                        DateOfPerformance = b.PerformanceDate,
-                        VenueName = b.VenueName,
-                        Location = b.Location,
-                        Setlists = b.Setlists.Select(c => new SetlistDataForConcertDetailView
+                        SetNumber = b.SetNumber,
+
+                        SongsForSetlist = b.SongsForSetList.Select(c=>new SongDetail
                         {
-                            SetlistId = c.SetlistId,
-                            SetNumber = c.SetNumber,
-                            SongsForSetlist = c.SongsForSetList.Select(d => new SongDetail
-                            {
-                                Title = d.Song.Title,
-                                SongId = d.Song.SongId
-
-                            }).ToList()
-                        }).ToList()
-
-
+                            Title = c.Song.Title,
+                            SongId = c.Song.SongId,
+                        }).ToList(),
                     }).ToList()
-
-                }).ToList();
+                }).Where(e=>e.UserId == _userId).ToList();
 
                 return query.ToList();
             }
         }
 
+      
 
     }
 }
