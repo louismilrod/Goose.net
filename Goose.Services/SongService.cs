@@ -11,7 +11,7 @@ namespace Goose.Services
 {
     public class SongService
     {
-        private readonly Guid _userId;        
+        private readonly Guid _userId;
 
         public SongService()
         {
@@ -31,33 +31,40 @@ namespace Goose.Services
                     SongId = s.SongId,
                     Artist = s.Artist,
                     OriginalArtist = s.OriginalArtist,
-                    Title = s.Title,                    
+                    Title = s.Title,
                 });
 
                 return query.ToArray();
             }
         }
 
-        //public IEnumerable<SongExtraDetails> GetSongOccurances(int songId)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query = ctx.Songs.Select(s => new SongExtraDetails
-        //        {
+        public IEnumerable<SongExtraDetails> GetSongOccurances(int songId)
+        {
+            List<SongExtraDetails> deets = new List<SongExtraDetails>();
+            var songs = GetSongsBeforeAndAfter(songId);
+            foreach (var item in songs)
+            {
+                var songextradetails = new SongExtraDetails
+                {
+                    SongAfter = item.SongAfter,
+                    SongBefore = item.SongBefore
+                };
 
+                deets.Add(songextradetails);
+            }
+            return deets;
 
-        //            DateOfPerformance = s.SongJoinSetlist.Setlist.Concert.PerformanceDate,
-        //            Venue = s.SongJoinSetlist.Setlist.Concert.VenueName,
-        //            //Gap = number of occurances of a song in the db since last occurance of the song, look at the all the concerts by dateofperformance and count the performances inbetween or before
-        //            Set = s.SongJoinSetlist.Setlist.SetNumber,
-        //            SongBefore = before,
-        //            SongAfter = occurance,
+            //using (var ctx = new ApplicationDbContext())
+            //{
+            //    var instancesofsong_on_songjoinsetlist = ctx.SongsJoinSetlist.Where(x => x.SongId == songId);
+            //    instancesofsong_on_songjoinsetlist.Select(x => new SongExtraDetails
+            //    {
+            //        SongAfter = 
+            //    }
 
-        //        });
-
-        //        return query.ToArray();
-        //    }
-        //}
+            //    return query.ToArray();
+            //}
+        }
 
 
         public bool CreateSong(SongCreate model)
@@ -80,7 +87,9 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Songs.Single(s=>s.SongId == id);
+                var entity = ctx.Songs.Single(s => s.SongId == id);
+                double timesplayed = ctx.SongsJoinSetlist.Where(f => f.SongId == id).Count();
+                double totalshows = ctx.Concerts.Count();
 
                 return new SongDetail
                 {
@@ -88,8 +97,13 @@ namespace Goose.Services
                     Title = entity.Title,
                     Artist = entity.Artist,
                     OriginalArtist = entity.OriginalArtist,
-                    Lyrics = entity.Lyrics,
-                    //TimesPlayed = ctx.SongsJoinSetlist.Where(f=>f.SongId == id).Count()
+                    //Lyrics = entity.Lyrics,
+                    FirstTimePlayed = FirstTimePlayed(id),
+                    LastTimePlayed = LastTimePlayed(id),
+                    TimesPlayed = ctx.SongsJoinSetlist.Where(f => f.SongId == id).Count(),
+                    VenuesPerformedAt = GetVenueForSong(id),
+                    PercentageOfShows = timesplayed/totalshows,
+                    
                 };
             }
         }
@@ -125,7 +139,7 @@ namespace Goose.Services
         }
 
 
-        public SongsBeforeAndAfter GetSongsBeforeAndAfter(int songId)
+        public List<SongsBeforeAndAfter> GetSongsBeforeAndAfter(int songId)
         {
             List<SongsBeforeAndAfter> allreturnedsongs = new List<SongsBeforeAndAfter>();
 
@@ -177,30 +191,146 @@ namespace Goose.Services
 
                     };
                 }
-                return allreturnedsongs.FirstOrDefault();
+                return allreturnedsongs.ToList();
                 //to the list, selecting the first one
 
 
             }
         }
 
-        //Gap = number of occurances of a song in the db since last occurance of the song, look at the all the concerts by dateofperformance and count the performances inbetween or before
+        //GETS THE FIRST PERFORMANCE OF A SONG
+
+        public DateTime FirstTimePlayed(int songId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var songtocount = ctx.Songs.Single(x => x.SongId == songId);
+                var songjoinsetlist = songtocount.SongJoinSetlists.Select(x => x.Setlist.Concert); //selects all the concerts that a song appears on
+                var concertsinorder = songjoinsetlist.OrderBy(s => s.PerformanceDate);
+                var firstconcertperformance = concertsinorder.FirstOrDefault();
+                if (firstconcertperformance != null)
+                {
+                    return firstconcertperformance.PerformanceDate;
+                }
+
+                else
+                {
+                    return DateTime.MaxValue;
+                }
+            }
+        }
+
+        //LAST PERFORMANCE OF SONG
+        public DateTime LastTimePlayed(int songId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var songtocount = ctx.Songs.Single(x => x.SongId == songId);
+                var concertswithsong = songtocount.SongJoinSetlists.Select(x => x.Setlist.Concert); //selects all the concerts that a song appears on
+                var concertsinorder = concertswithsong.OrderBy(s => s.PerformanceDate);
+                var lastconcertpeformance = concertsinorder.LastOrDefault();
+                if (lastconcertpeformance != null)
+                {
+                    return lastconcertpeformance.PerformanceDate;
+                }
+
+                else
+                {
+                    return DateTime.MaxValue;
+                }
+            }
+        }
+
+        public List<string> GetVenueForSong(int songId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var songtosearch = ctx.Songs.Single(x => x.SongId == songId);
+                var concertswithsong = songtosearch.SongJoinSetlists.Select(x => x.Setlist.Concert);
+                var venueforsong = concertswithsong.Select(a => a.VenueName).ToList();
+                return venueforsong;
+            }
+        }
+
+        //var allconcert = ctx.Concerts.ToList();
+        //var concertcount = ctx.Concerts.Count();
+        //var sortedconcerts = allconcert.OrderBy(g => g.PerformanceDate).ToList();
+        ////var instancesofsong_on_songjoinsetlist = ctx.SongsJoinSetlist.Where(x => x.SongId == songId);
+        //foreach (var item in collection)
+        //{
+
+        //}
+
+
+
+        //    List<DateTime> everyconcertevent = new List<DateTime>();
+
+        //foreach (var item in instancesofsong_on_songjoinsetlist)
+        //{
+        //        var thing = item.Setlist.Concert.PerformanceDate;
+        //        return thing;
+        //};
+
+        //first occurance of song in this list of sorted concerts setlists list, then select the datetime from the concert the setlist is assigned to
+
+
+
+
+        public int TimesPlayed(int songId) // i spent 45 minutes writing this but had already written the linq statement up there ^^ whooops.
+        {
+            int timesplayed;
+            using (var ctx = new ApplicationDbContext())
+            {
+
+                var allSongsJoinSetlist = ctx.SongsJoinSetlist.ToList();
+                List<SongsJoinSetlist> songappearances = new List<SongsJoinSetlist>();
+
+                foreach (var item in allSongsJoinSetlist)
+                {
+                    if (item.SongId == songId)
+                    {
+                        songappearances.Add(item);
+                    }
+                }
+
+                timesplayed = songappearances.Count;
+                return timesplayed;
+
+            }
+        }
+
+        // Gap = number of occurances of a song in the db since last occurance of the song, look at the all the concerts by dateofperformance and count the performances inbetween or before
+
         //public int ConcertsSinceSongOccurance(int songId)
         //{
-        //    int gap;
+        //    int timesplayed;
 
         //    using (var ctx = new ApplicationDbContext())
         //    {
-        //        var songtocount = ctx.Songs.Single(x => x.SongId == songId);
+        //        var songtocount = ctx.Songs.Single(x => x.SongId == songId); // <-- for the real method
         //        var allconcert = ctx.Concerts.ToList();
         //        var concertcount = ctx.Concerts.Count();
         //        var sortedconcerts = allconcert.OrderBy(g => g.PerformanceDate).ToList();
 
         //        for (int i = 0; i < concertcount; i++)
         //        {
-        //            Concert concert = sortedconcerts[i];  //get list of setlists and get songs from those
-        //            var sortedsetlist = sortedconcerts.Select(a => a.Setlists).ToList();
+        //            Concert concert = sortedconcerts[i];  //creates a concert entity for each event sorted by date
+        //            var sortedsetlist = sortedconcerts.Select(a => a.Setlists).ToList(); // selects the setlist in chronilogical order from the concert
 
+        //            foreach (var item in sortedsetlist)
+        //            {
+        //                var songjoinsetlistsortedbydate = item.Select(x => x.SongsForSetList);
+
+        //                foreach (var item2 in songjoinsetlistsortedbydate)
+        //                {
+        //                    var songoccurances = item2.Select(x => x.SongId == songId).Count();
+
+        //                    timesplayed = songoccurances;
+
+        //                    return songoccurances;
+        //                }
+        //            }
+        //           // gooing to need a goto statement most likely
 
 
         //            if (/*concert has the songs*/) //if the song is listed on a setlist in the concert then return how many counts its been
@@ -225,7 +355,7 @@ namespace Goose.Services
 
         //        }
         //    }
-        //    return gap;
-        //}
-    }
+    }  //    return gap;
+            //}
+    
 }
