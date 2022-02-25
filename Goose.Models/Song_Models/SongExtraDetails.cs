@@ -13,12 +13,12 @@ namespace Goose.Models.Song_Models
     {
         public DateTime DateOfPerformance { get; set; }
         public string Venue { get; set; }
-        public int Gap { get; set; }
-        public SetType Set { get; set; }
-        public Song SongBefore { get; set; }
-        public Song SongAfter { get; set; }
+        public string Locaton { get; set; }
+        //public int Gap { get; set; }       
+        public SetType Set { get; set; }        
+        public SongListItem SongBefore { get; set; }
+        public SongListItem SongAfter { get; set; }
         public int PositionInSet { get; set; }
-        public string Title { get; set; }
 
     }
 }

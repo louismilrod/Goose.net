@@ -131,6 +131,13 @@ namespace Goose.WebMVC.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult GetOccurances(int songid)
+        {
+            var service = AnonymousServiceView();
+            var svc = service.GetSongOccurances(songid);
+            return View(service);
+        }
+
 
         private SongService CreateSongService()
         {

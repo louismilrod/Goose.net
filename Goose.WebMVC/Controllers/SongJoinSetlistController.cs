@@ -86,7 +86,15 @@ namespace Goose.WebMVC.Controllers
 
         public ActionResult Edit(int id, SongsJoinSetlistViewModel model)
         {
-            if(!ModelState.IsValid) return View(model);
+            var service = CreateSongJoinSetlistService();
+            var songselectlist = service.SelectListPopulator();
+            var positioninsetselectlist = service.SelectListPopulatorEdit();
+
+            model.SelectListSong = songselectlist;
+            model.SelectPositionInSet = positioninsetselectlist;
+
+
+            if (!ModelState.IsValid) return View(model);
 
             if(model.SongsJoinSetlistId != id)
             {
@@ -94,7 +102,6 @@ namespace Goose.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = CreateSongJoinSetlistService();
 
             if (service.UpdateSongJoinSetlist(model))
             {

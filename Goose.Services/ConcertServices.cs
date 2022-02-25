@@ -14,7 +14,8 @@ namespace Goose.Services
 {
     public class ConcertServices
     {
-        private readonly Guid _userId;
+        private Guid _userId { get; set; }
+
         public ConcertServices()
         {
 
@@ -23,12 +24,13 @@ namespace Goose.Services
         public ConcertServices(Guid userId)
         {
             _userId = userId;
-        }
+        }     
 
         public IEnumerable<ConcertListItem> GetConcert_List()
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
 
                 var query = ctx.Concerts.Select(s => new ConcertListItem
                 {
@@ -36,8 +38,9 @@ namespace Goose.Services
                     BandName = s.BandName,
                     DateOfPerformance = s.PerformanceDate,
                     VenueName = s.VenueName,
-                    Location = s.Location,   
+                    Location = s.Location,
                     Notes = s.Notes,
+                    InAttendance = false,//attendancetable.Where(c => c.ConcertId == s.ConcertId).Count() > 0,
                     Setlists = s.Setlists.Select(a => new SetlistDataForConcertDetailView
                     {
                         SetlistId = a.SetlistId,
@@ -139,8 +142,73 @@ namespace Goose.Services
                 return ctx.SaveChanges() == 1;
 
             }
-
-
         }
+
+        //public bool I_Went_To_That(I_Went_To_That_Model model)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var concertsattended = new ConcertsAttended()
+        //        {
+        //            UserId = _userId,
+        //            ConcertId = model.ConcertId
+        //        };
+        //        model.InAttendance = true;
+
+        //        ctx.ConcertsAttended.Add(concertsattended);
+        //        return ctx.SaveChanges() == 1;
+        //    }
+        //}
+
+        public bool I_Went_To_That(int concertId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var concertsattended = new ConcertsAttended()
+                {
+                    UserId = _userId,
+                    ConcertId = concertId,
+                };
+                var inattendance = ctx.ConcertsAttended.Where(x => x.ConcertId == concertId).Where(x => x.UserId == _userId);
+
+                if (inattendance.Any())//++user id
+                {
+                    return false;
+                }
+
+                ctx.ConcertsAttended.Add(concertsattended);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool Wait_Did_I_Go_To_That(int concertId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.ConcertsAttended.SingleOrDefault(x=>x.ConcertId==concertId && x.UserId == _userId);
+                
+                if (entity == null)
+                {
+                    return false;
+                }
+
+                ctx.ConcertsAttended.Remove(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+
+        //public bool Wait_Did_I_Go_To_That(Wait_Did_I_Go_To_That model)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var entity = ctx.ConcertsAttended.Single(x => x.ConcertsAttendedId == model.ConcertsAttendedId);
+        //        model.InAttendance = false;
+        //        ctx.ConcertsAttended.Remove(entity);
+        //        return ctx.SaveChanges() == 1;
+        //    }
+        //}
+
+       
     }
 }

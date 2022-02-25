@@ -27,6 +27,34 @@ namespace Goose.WebMVC.Controllers
             return View(model);
         }
 
+        //Get: Concert Attendance
+        public ActionResult Attended(int id)
+        {
+            var service = CreateConcertService();
+            bool model = service.I_Went_To_That(id);
+            if (service.I_Went_To_That(id) == false)
+            {
+                TempData["SaveResult"] = "You already went to that concert";
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        
+        public ActionResult Unattend(int id)
+        {
+            var service = CreateConcertService();            
+
+            if (service.Wait_Did_I_Go_To_That(id) == false)
+            {
+                TempData["SaveResult"] = "I knew you didn't go";
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Create()
         {
             ViewBag.Title = "New Concert";

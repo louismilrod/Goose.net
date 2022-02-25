@@ -18,7 +18,7 @@ namespace Goose.Services
             }
         }
 
-        //public IEnumerable<IdentityRole> GetAllUsers()
+        //public IEnumerable<IdentityRole> GetAllRoles()
         //{
         //    using (var ctx = new ApplicationDbContext())
         //    {
