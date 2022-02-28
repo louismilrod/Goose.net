@@ -4,20 +4,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model=>model.Title)</h2>
 
 <div>
-    <h4>SongDetail</h4>
+    <h4>Statistics:</h4>
     <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <dl class="dl-horizontal">       
 
         <dt>
             @Html.DisplayNameFor(model => model.Artist)
@@ -25,15 +17,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.Artist)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Lyrics)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lyrics)
-        </dd>
+        </dd>       
 
         <dt>
             @Html.DisplayNameFor(model => model.OriginalArtist)
@@ -74,22 +58,12 @@
         <dd>
             @Html.DisplayFor(model => model.PercentageOfShows)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VenuesPerformedAt)
-        </dt>
-        @foreach (var item in Model.VenuesPerformedAt)
-        {
-            <dd>
-                @Html.DisplayFor(model => model.VenuesPerformedAt)
-            </dd>
-        }
-
-
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SongId  }) |
+    @if (User.IsInRole("admin"))
+    {
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SongId  })
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>
