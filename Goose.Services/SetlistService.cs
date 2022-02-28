@@ -81,23 +81,7 @@ namespace Goose.Services
                     DateOfPerformance = entity.Concert.PerformanceDate
                 };
             }
-        }
-
-        //public SetlistViewModel GetSetlistByDateTime(DateTime showtime)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity = ctx.Setlist.Single(s => s.DateofPerformance == showtime);
-
-        //        return new SetlistViewModel
-        //        {
-        //            SetlistId = entity.SetlistId,
-        //            SetNumber = entity.SetNumber,
-        //            SongsForSetList = entity.SongsForSetList,
-        //            DateofPerformance = entity.DateofPerformance
-        //        };
-        //    }
-        //}
+        }        
 
         public bool UpdateSetlist(SetlistViewModel model)
         {
