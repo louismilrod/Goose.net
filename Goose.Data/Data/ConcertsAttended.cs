@@ -14,7 +14,8 @@ namespace Goose.Data.Data
         [Required]
         public Guid UserId { get; set; }
         [Required]
-        public int ConcertId { get; set; }
+        public int ConcertId { get; set; }        
+        public bool InAttendance { get; set; }
         public virtual Concert Concert { get; set; }
     }
 }

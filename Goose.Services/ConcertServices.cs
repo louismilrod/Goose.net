@@ -6,6 +6,7 @@ using Goose.Models.Setlist_Models;
 using Goose.Models.Song_Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +25,51 @@ namespace Goose.Services
         public ConcertServices(Guid userId)
         {
             _userId = userId;
-        }     
+        }
+
+        //public async Task<List<ConcertListItem>> GetConcert_List()
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
+        //        //empty list, foreach through concerts, and add to the list
+        //        var list = new List<ConcertListItem>();
+        //        foreach (var item in ctx.Concerts)
+        //        {
+        //            list.Add(new ConcertListItem
+        //            {
+        //                ConcertId = item.ConcertId,
+        //                BandName = item.BandName,
+        //                DateOfPerformance = item.PerformanceDate,
+        //                VenueName = item.VenueName,
+        //                Location = item.Location,
+        //                Notes = item.Notes,
+        //                InAttendance = attendancetable.Where(c => c.ConcertId == item.ConcertId).Count() > 0,
+        //                Setlists = item.Setlists.add!!!(a => new SetlistDataForConcertDetailView
+        //                {
+        //                    SetlistId = a.SetlistId,
+        //                    SetNumber = a.SetNumber,
+        //                    SongsForSetlist = a.SongsForSetList.Select(b => new SongDetail
+        //                    {
+        //                        Title = b.Song.Title,
+        //                        SongId = b.Song.SongId,
+        //                    }).ToList(),
+        //                }).ToList()
+
+        //            });
+        //        }
+        //        return list;
+        //    }
+        //}
 
         public IEnumerable<ConcertListItem> GetConcert_List()
         {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
+            //bool attendance = Was_I_There();
 
+            using (var ctx = new ApplicationDbContext())            {
+
+                var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
+                //in attendance logic
                 var query = ctx.Concerts.Select(s => new ConcertListItem
                 {
                     ConcertId = s.ConcertId,
@@ -40,7 +78,7 @@ namespace Goose.Services
                     VenueName = s.VenueName,
                     Location = s.Location,
                     Notes = s.Notes,
-                    InAttendance = false,//attendancetable.Where(c => c.ConcertId == s.ConcertId).Count() > 0,
+                    InAttendance = attendancetable.Where(c => c.ConcertId == s.ConcertId).Count() > 0,
                     Setlists = s.Setlists.Select(a => new SetlistDataForConcertDetailView
                     {
                         SetlistId = a.SetlistId,
@@ -56,6 +94,38 @@ namespace Goose.Services
                 return query.ToArray();
             }
         }
+
+
+        public bool Was_I_There()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
+                var query = ctx.Concerts.Select(u => u.ConcertId).ToList();
+
+                List<ConcertListItem> concertId = new List<ConcertListItem>();
+                foreach (var item in attendancetable)
+                {
+
+                    if (query.Contains(item.ConcertId))
+                    {
+                        return true;
+                    }
+
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+
+                return false;
+
+            }
+
+        }
+
+
 
         public bool CreateConcert(ConcertViewModel model)
         {

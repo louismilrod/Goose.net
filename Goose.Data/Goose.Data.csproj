@@ -102,6 +102,10 @@
     <Compile Include="Migrations\202202250005023_RemovedBoolFromInAttenDance.designer.cs">
       <DependentUpon>202202250005023_RemovedBoolFromInAttenDance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202251616368_AddedInAttendanceToAttendanceTable.cs" />
+    <Compile Include="Migrations\202202251616368_AddedInAttendanceToAttendanceTable.designer.cs">
+      <DependentUpon>202202251616368_AddedInAttendanceToAttendanceTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Song.cs" />
@@ -140,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202202250005023_RemovedBoolFromInAttenDance.resx">
       <DependentUpon>202202250005023_RemovedBoolFromInAttenDance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202251616368_AddedInAttendanceToAttendanceTable.resx">
+      <DependentUpon>202202251616368_AddedInAttendanceToAttendanceTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
