@@ -101,7 +101,7 @@ namespace Goose.Services
                     FirstTimePlayed = FirstTimePlayed(id),
                     LastTimePlayed = LastTimePlayed(id),
                     TimesPlayed = ctx.SongsJoinSetlist.Where(f => f.SongId == id).Count(),
-                    VenuesPerformedAt = GetVenueForSong(id),
+                    //VenuesPerformedAt = Get_Locations(id),
                     PercentageOfShows = timesplayed/totalshows,
                     
                 };
@@ -241,14 +241,14 @@ namespace Goose.Services
             }
         }
 
-        public List<string> GetVenueForSong(int songId)
+        public List<string> Get_Locations(int songId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var songtosearch = ctx.Songs.Single(x => x.SongId == songId);
                 var concertswithsong = songtosearch.SongJoinSetlists.Select(x => x.Setlist.Concert);
-                var venueforsong = concertswithsong.Select(a => a.VenueName).ToList();
-                return venueforsong;
+                var statesperformed = concertswithsong.Select(a => a.Location).ToList();
+                return statesperformed;
             }
         }
 
