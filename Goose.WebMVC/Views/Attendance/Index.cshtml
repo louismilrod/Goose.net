@@ -58,10 +58,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
         </td>        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        <td>            
+            @Html.ActionLink("I did not go to that", "Unattend", new { id = item.ConcertId }) |
         </td>
     </tr>
 }
