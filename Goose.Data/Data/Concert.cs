@@ -21,7 +21,7 @@ namespace Goose.Data.Data
         [Required]
         public DateTime PerformanceDate { get; set; }        
         public string Notes { get; set; }     
-        public virtual ICollection<Setlist> Setlists { get; set; }
-        
+        public virtual ICollection<Setlist> Setlists { get; set; }       
+
     }
 }
