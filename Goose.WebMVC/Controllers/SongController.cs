@@ -16,6 +16,7 @@ namespace Goose.WebMVC.Controllers
         {
             ViewBag.TitleSortParm = String.IsNullOrEmpty(sortorder) ? "title_desc" : "";
             ViewBag.IdSortParm = String.IsNullOrEmpty(sortorder) ? "id_desc" : "";
+            ViewBag.CountSortParm = String.IsNullOrEmpty(sortorder) ? "count" : "";
             
             var service = AnonymousServiceView();
             var model = service.GetSongLists();
@@ -27,6 +28,9 @@ namespace Goose.WebMVC.Controllers
                     break;
                 case "id_desc":
                     songs = model.OrderBy(a => a.SongId);
+                    break;
+                case "count":
+                    songs = model.OrderByDescending(a =>a.TimesPlayed);
                     break;
                 default:
                     songs = model.OrderBy(b=>b.Title);
@@ -131,12 +135,12 @@ namespace Goose.WebMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult GetOccurances(int songid)
-        {
-            var service = AnonymousServiceView();
-            var svc = service.GetSongOccurances(songid);
-            return View(service);
-        }
+        //public ActionResult GetOccurances(int songid)
+        //{
+        //    var service = AnonymousServiceView();
+        //    var svc = service.GetSongOccurances(songid);
+        //    return View(service);
+        //}
 
 
         private SongService CreateSongService()

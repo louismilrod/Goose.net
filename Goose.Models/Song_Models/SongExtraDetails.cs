@@ -19,6 +19,5 @@ namespace Goose.Models.Song_Models
         public SongListItem SongBefore { get; set; }
         public SongListItem SongAfter { get; set; }
         public int PositionInSet { get; set; }
-
     }
 }

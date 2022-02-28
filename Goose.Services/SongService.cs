@@ -26,45 +26,38 @@ namespace Goose.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                //implement first time played
                 var query = ctx.Songs.Select(s => new SongListItem
                 {
                     SongId = s.SongId,
                     Artist = s.Artist,
-                    OriginalArtist = s.OriginalArtist,
+                    //OriginalArtist = s.OriginalArtist,
                     Title = s.Title,
+                    //FirstTimePlayed = FirstTimePlayed(s.SongId),
+                    //LastTimePlayed = LastTimePlayed(s.SongId),
+                    TimesPlayed = ctx.SongsJoinSetlist.Where(f => f.SongId == s.SongId).Count()
                 });
 
                 return query.ToArray();
             }
         }
 
-        public IEnumerable<SongExtraDetails> GetSongOccurances(int songId)
-        {
-            List<SongExtraDetails> deets = new List<SongExtraDetails>();
-            var songs = GetSongsBeforeAndAfter(songId);
-            foreach (var item in songs)
-            {
-                var songextradetails = new SongExtraDetails
-                {
-                    SongAfter = item.SongAfter,
-                    SongBefore = item.SongBefore
-                };
+        //public IEnumerable<SongExtraDetails> GetSongOccurances(int songId)
+        //{
+        //    List<SongExtraDetails> deets = new List<SongExtraDetails>();
+        //    var songs = GetSongsBeforeAndAfter(songId);
+        //    foreach (var item in songs)
+        //    {
+        //        var songextradetails = new SongExtraDetails
+        //        {
+        //            SongAfter = item.SongAfter,
+        //            SongBefore = item.SongBefore
+        //        };
 
-                deets.Add(songextradetails);
-            }
-            return deets;
-
-            //using (var ctx = new ApplicationDbContext())
-            //{
-            //    var instancesofsong_on_songjoinsetlist = ctx.SongsJoinSetlist.Where(x => x.SongId == songId);
-            //    instancesofsong_on_songjoinsetlist.Select(x => new SongExtraDetails
-            //    {
-            //        SongAfter = 
-            //    }
-
-            //    return query.ToArray();
-            //}
-        }
+        //        deets.Add(songextradetails);
+        //    }
+        //    return deets;           
+        //}
 
 
         public bool CreateSong(SongCreate model)
@@ -97,11 +90,9 @@ namespace Goose.Services
                     Title = entity.Title,
                     Artist = entity.Artist,
                     OriginalArtist = entity.OriginalArtist,
-                    //Lyrics = entity.Lyrics,
                     FirstTimePlayed = FirstTimePlayed(id),
                     LastTimePlayed = LastTimePlayed(id),
                     TimesPlayed = ctx.SongsJoinSetlist.Where(f => f.SongId == id).Count(),
-                    //VenuesPerformedAt = Get_Locations(id),
                     PercentageOfShows = timesplayed/totalshows,
                     
                 };
@@ -355,7 +346,6 @@ namespace Goose.Services
 
         //        }
         //    }
-    }  //    return gap;
-            //}
+    }
     
 }

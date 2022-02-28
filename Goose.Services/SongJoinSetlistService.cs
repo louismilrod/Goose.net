@@ -81,6 +81,7 @@ namespace Goose.Services
 
                 entity.SetlistId = model.SetlistId;
                 entity.SongId = model.SongId;
+                entity.PositionInSet = model.PositionInSet;
 
                 return ctx.SaveChanges() == 1;
             }

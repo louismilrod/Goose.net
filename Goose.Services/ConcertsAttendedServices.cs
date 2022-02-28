@@ -35,7 +35,7 @@ namespace Goose.Services
                     VenueName = a.Concert.VenueName,
                     DateOfPerformance = a.Concert.PerformanceDate,
                     Notes = a.Concert.Notes,
-                    InAttendance = true,
+                    //InAttendance = a.InAttendance,
                     Setlists = a.Concert.Setlists.Select(b => new SetlistDataForConcertDetailView
                     {
                         SetNumber = b.SetNumber,
