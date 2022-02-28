@@ -14,7 +14,8 @@ namespace Goose.Models.Song_Models
         [MaxLength(150)]
         public string Title { get; set; }
         public string Artist { get; set; }
-        // public string Lyrics { get; set; }
+        
+        [Display(Name = "Original Artist")]
         public string OriginalArtist { get; set; }
     }
 }

@@ -13,10 +13,13 @@ namespace Goose.Models.Concert_Models
     public class ConcertDetails
     { 
         public int ConcertId { get; set; }
+        [Display(Name = "Band Name")]
         public string BandName { get; set; }
         public string Location { get; set; }
+        [Display(Name = "Performance Date")]
         public DateTime DateOfPerformance { get; set; }
         public string Notes { get; set; }
+        [Display(Name = "Venue Name")]
         public string VenueName { get; set; }
         public List<SetlistDataForConcertDetailView> Setlists { get; set; }
      
