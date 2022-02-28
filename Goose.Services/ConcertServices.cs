@@ -27,7 +27,7 @@ namespace Goose.Services
             _userId = userId;
         }
 
-        //public async Task<List<ConcertListItem>> GetConcert_List()
+        //public List<ConcertListItem> GetConcert_List()
         //{
         //    using (var ctx = new ApplicationDbContext())
         //    {
@@ -45,7 +45,7 @@ namespace Goose.Services
         //                Location = item.Location,
         //                Notes = item.Notes,
         //                InAttendance = attendancetable.Where(c => c.ConcertId == item.ConcertId).Count() > 0,
-        //                Setlists = item.Setlists.add!!!(a => new SetlistDataForConcertDetailView
+        //                Setlists = item.Setlists.Select(a => new SetlistDataForConcertDetailView
         //                {
         //                    SetlistId = a.SetlistId,
         //                    SetNumber = a.SetNumber,
@@ -64,10 +64,8 @@ namespace Goose.Services
 
         public IEnumerable<ConcertListItem> GetConcert_List()
         {
-            //bool attendance = Was_I_There();
-
-            using (var ctx = new ApplicationDbContext())            {
-
+            using (var ctx = new ApplicationDbContext())
+            {
                 var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
                 //in attendance logic
                 var query = ctx.Concerts.Select(s => new ConcertListItem
@@ -78,7 +76,7 @@ namespace Goose.Services
                     VenueName = s.VenueName,
                     Location = s.Location,
                     Notes = s.Notes,
-                    InAttendance = attendancetable.Where(c => c.ConcertId == s.ConcertId).Count() > 0,
+                    //InAttendance = attendancetable.Where(c => c.ConcertId == s.ConcertId).Count() > 0,
                     Setlists = s.Setlists.Select(a => new SetlistDataForConcertDetailView
                     {
                         SetlistId = a.SetlistId,
@@ -96,36 +94,34 @@ namespace Goose.Services
         }
 
 
-        public bool Was_I_There()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
-                var query = ctx.Concerts.Select(u => u.ConcertId).ToList();
+        //public bool Was_I_There()
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
+        //        var query = ctx.Concerts.Select(u => u.ConcertId).ToList();
 
-                List<ConcertListItem> concertId = new List<ConcertListItem>();
-                foreach (var item in attendancetable)
-                {
+        //        List<ConcertListItem> concertId = new List<ConcertListItem>();
+        //        foreach (var item in attendancetable)
+        //        {
 
-                    if (query.Contains(item.ConcertId))
-                    {
-                        return true;
-                    }
+        //            if (query.Contains(item.ConcertId))
+        //            {
+        //                return true;
+        //            }
 
-                    else
-                    {
-                        return false;
-                    }
+        //            else
+        //            {
+        //                return false;
+        //            }
 
-                }
+        //        }
 
-                return false;
+        //        return false;
 
-            }
+        //    }
 
-        }
-
-
+        //}
 
         public bool CreateConcert(ConcertViewModel model)
         {
@@ -169,20 +165,7 @@ namespace Goose.Services
                             Title = a.Song.Title
                         }).ToList()
                     }).ToList(),
-                };
-                    
-                //    {
-                //        SetlistId = s.SetlistId,
-                //        SetNumber = s.SetNumber,
-                //        SongsForSetlist = s.SongsForSetList.Select(a=>new SongDetail
-                //        {
-                //            Title = a.Song.Title,
-                //            Artist = a.Song.Artist,
-                //            OriginalArtist = a.Song.OriginalArtist,
-
-                //        }).ToList()
-                //    }).ToList(), 
-                //};
+                };                
             }
         }
 
@@ -213,22 +196,6 @@ namespace Goose.Services
 
             }
         }
-
-        //public bool I_Went_To_That(I_Went_To_That_Model model)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var concertsattended = new ConcertsAttended()
-        //        {
-        //            UserId = _userId,
-        //            ConcertId = model.ConcertId
-        //        };
-        //        model.InAttendance = true;
-
-        //        ctx.ConcertsAttended.Add(concertsattended);
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
 
         public bool I_Went_To_That(int concertId)
         {
@@ -265,20 +232,6 @@ namespace Goose.Services
                 ctx.ConcertsAttended.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
-        }
-
-
-        //public bool Wait_Did_I_Go_To_That(Wait_Did_I_Go_To_That model)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity = ctx.ConcertsAttended.Single(x => x.ConcertsAttendedId == model.ConcertsAttendedId);
-        //        model.InAttendance = false;
-        //        ctx.ConcertsAttended.Remove(entity);
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
-
-       
+        }      
     }
 }
