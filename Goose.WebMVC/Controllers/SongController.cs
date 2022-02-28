@@ -39,6 +39,7 @@ namespace Goose.WebMVC.Controllers
             return View(songs.ToList());
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Title = "New Song";
