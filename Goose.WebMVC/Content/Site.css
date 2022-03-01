@@ -22,3 +22,20 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.songswithoutcommas::after {
+    content: ', ';
+}
+
+.songswithoutcommas:last-child:after {
+    content: '';
+}
+
+.attendancecolor {
+    color: green;
+    background-color: antiquewhite;
+    border-color: black;
+}
+
+
+
