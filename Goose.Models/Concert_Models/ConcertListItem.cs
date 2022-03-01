@@ -23,7 +23,7 @@ namespace Goose.Models.Concert_Models
         [Display(Name = "Performance Date")]
         public DateTime DateOfPerformance { get; set; }
         public string Notes { get; set; }
-        [Display(Name = "Setist")]
+        [Display(Name = "Setlist")]
         public List<SetlistDataForConcertDetailView> Setlists { get; set; }
         public bool InAttendance { get; set; }
     }
