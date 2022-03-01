@@ -10,10 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SongsJoinSetlistId)
-        </th>
+    <tr>        
         <th>
             @Html.DisplayNameFor(model => model.SongId)
         </th>
@@ -24,16 +21,19 @@
             @Html.DisplayNameFor(model => model.SetlistId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.SetType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfPerformance)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PositionInSet)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.SongsJoinSetlistId)
-    </td>
+<tr>    
     <td>
         @Html.DisplayFor(modelItem => item.SongId)
     </td>
@@ -42,6 +42,12 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.SetlistId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SetType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateOfPerformance)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.PositionInSet)
