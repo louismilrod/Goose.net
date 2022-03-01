@@ -49,6 +49,7 @@ namespace Goose.WebMVC.Controllers
         //POST: Song
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(SongCreate model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -74,6 +75,7 @@ namespace Goose.WebMVC.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             var service = CreateSongService();
@@ -91,6 +93,7 @@ namespace Goose.WebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, SongEdit model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -114,6 +117,7 @@ namespace Goose.WebMVC.Controllers
         }
 
         [ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             var svc = CreateSongService();
@@ -125,6 +129,7 @@ namespace Goose.WebMVC.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult DeletePost(int id)
         {
             var service = CreateSongService();

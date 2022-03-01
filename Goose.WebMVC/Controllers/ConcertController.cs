@@ -28,20 +28,24 @@ namespace Goose.WebMVC.Controllers
         }
 
         //Get: Concert Attendance
+        [Authorize]
         public ActionResult Attended(int id)
         {
             var service = CreateConcertService();
-            bool model = service.I_Went_To_That(id);
             if (service.I_Went_To_That(id) == false)
             {
-                TempData["SaveResult"] = "You already went to that concert";
+                TempData["AlreadySeen"] = "You already went to that concert";
                 return RedirectToAction("Index");
             }
+            else
+            {
+                TempData["Added"] = "Concert Added";
+                return RedirectToAction("Index");
+            }
+            
 
-            return RedirectToAction("Index");
         }
 
-        
         public ActionResult Unattend(int id)
         {
             var service = CreateConcertService();            
@@ -55,6 +59,7 @@ namespace Goose.WebMVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Title = "New Concert";
@@ -62,6 +67,7 @@ namespace Goose.WebMVC.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(ConcertViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -80,6 +86,7 @@ namespace Goose.WebMVC.Controllers
         }
 
         // Get: Concert/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             var service = CreateConcertService();
@@ -99,6 +106,7 @@ namespace Goose.WebMVC.Controllers
 
         //Post: Concert/Edit/{id}
         [HttpPost, ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, ConcertViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -123,6 +131,7 @@ namespace Goose.WebMVC.Controllers
 
         //Get: Setlist/Delete/{id}
         [ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             var svc = CreateConcertService();
@@ -134,6 +143,7 @@ namespace Goose.WebMVC.Controllers
         // POST: Concert/Delete/{id}
         [HttpPost, ValidateAntiForgeryToken]
         [ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeletePost(int id)
         {
             var service = CreateConcertService();

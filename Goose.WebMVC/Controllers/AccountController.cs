@@ -431,6 +431,7 @@ namespace Goose.WebMVC.Controllers
         }
 
         //Get: User Index Page
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             var userService = new UserService();
@@ -444,8 +445,8 @@ namespace Goose.WebMVC.Controllers
             //    });
             //    ctx.SaveChanges();
             //}
-            
-            
+
+
             var userList = users.Select(u =>
             {
                 /* do some stuff */
@@ -459,6 +460,7 @@ namespace Goose.WebMVC.Controllers
             return View(userList); 
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Details(string userId)
         {
             ApplicationUser User = UserManager.FindById(userId);
@@ -473,6 +475,7 @@ namespace Goose.WebMVC.Controllers
             return View(userDetailModel);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Edit (string userId)
         {
             ApplicationUser User = UserManager.FindById(userId);
@@ -489,6 +492,7 @@ namespace Goose.WebMVC.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit (string userId, UserEdit model)
         {
             var currentUserId = User.Identity.GetUserId();

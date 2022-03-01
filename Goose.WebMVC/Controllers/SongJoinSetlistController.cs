@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Goose.WebMVC.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class SongJoinSetlistController : Controller
     {
         // GET: SongJoinSetlistViewModelService
