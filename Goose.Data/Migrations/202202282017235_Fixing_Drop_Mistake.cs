@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedInAttendanceToAttendanceTable : DbMigration
+    public partial class Fixing_Drop_Mistake : DbMigration
     {
         public override void Up()
         {

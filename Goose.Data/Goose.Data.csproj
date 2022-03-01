@@ -98,13 +98,9 @@
     <Compile Include="Migrations\202202232128535_ConcertsAttended.designer.cs">
       <DependentUpon>202202232128535_ConcertsAttended.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202202250005023_RemovedBoolFromInAttenDance.cs" />
-    <Compile Include="Migrations\202202250005023_RemovedBoolFromInAttenDance.designer.cs">
-      <DependentUpon>202202250005023_RemovedBoolFromInAttenDance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202251616368_AddedInAttendanceToAttendanceTable.cs" />
-    <Compile Include="Migrations\202202251616368_AddedInAttendanceToAttendanceTable.designer.cs">
-      <DependentUpon>202202251616368_AddedInAttendanceToAttendanceTable.cs</DependentUpon>
+    <Compile Include="Migrations\202202282017235_Fixing_Drop_Mistake.cs" />
+    <Compile Include="Migrations\202202282017235_Fixing_Drop_Mistake.designer.cs">
+      <DependentUpon>202202282017235_Fixing_Drop_Mistake.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,11 +138,8 @@
     <EmbeddedResource Include="Migrations\202202232128535_ConcertsAttended.resx">
       <DependentUpon>202202232128535_ConcertsAttended.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202250005023_RemovedBoolFromInAttenDance.resx">
-      <DependentUpon>202202250005023_RemovedBoolFromInAttenDance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202251616368_AddedInAttendanceToAttendanceTable.resx">
-      <DependentUpon>202202251616368_AddedInAttendanceToAttendanceTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202282017235_Fixing_Drop_Mistake.resx">
+      <DependentUpon>202202282017235_Fixing_Drop_Mistake.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

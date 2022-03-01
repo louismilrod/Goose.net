@@ -1,5 +1,6 @@
 ﻿using Goose.Models.Setlist_Models;
 using Goose.Models.Setlist_Modles;
+using Goose.Models.Song_Models;
 using Goose.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -29,14 +30,22 @@ namespace Goose.WebMVC.Controllers
         }
 
         // GET: Setlist/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Title = "New Setlist";
-            return View();
+            var service = CreateSetListService();
+            SelectList selectListItems = service.SelectListPopulator();
+            SetlistCreate model = new SetlistCreate()
+            {
+                SelectListSetlist = selectListItems
+            };
+            return View(model);
         }
 
         // POST: Setlist/Create
         [HttpPost, ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(SetlistCreate model)
         {
             if(!ModelState.IsValid) return View(model);
@@ -55,6 +64,7 @@ namespace Goose.WebMVC.Controllers
         }
 
         // GET: Setlist/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             var service = CreateSetListService();
@@ -71,6 +81,7 @@ namespace Goose.WebMVC.Controllers
 
         // POST: Setlist/Edit/5
         [HttpPost, ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, SetlistViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -95,6 +106,7 @@ namespace Goose.WebMVC.Controllers
 
         // GET: Setlist/Delete/5
         [ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             var svc = CreateSetListService();
@@ -106,6 +118,7 @@ namespace Goose.WebMVC.Controllers
         // POST: Setlist/Delete/5
         [HttpPost, ValidateAntiForgeryToken]
         [ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeletePost(int id)
         {
             var service = CreateSetListService();

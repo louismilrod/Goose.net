@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Goose.WebMVC.Controllers
 {
+    [Authorize]
     public class AttendanceController : Controller
     {
         // GET: Attendance

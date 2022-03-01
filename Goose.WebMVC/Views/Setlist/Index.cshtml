@@ -1,22 +1,27 @@
 ﻿@model IEnumerable<Goose.Models.Setlist_Models.SetlistViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Setlist - ";
 }
 
-<h2>Index</h2>
-
+<h2>Setlists</h2>
+@if (User.IsInRole("admin"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+}
+<table class="table table-condensed table-responsive">
     <tr>
+        @if (User.IsInRole("admin"))
+        {
         <th>
             @Html.DisplayNameFor(model => model.SetlistId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ConcertId)
         </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.DateOfPerformance)
         </th>
@@ -31,12 +36,15 @@
 
 @foreach (var item in Model) {
 <tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.SetlistId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ConcertId)
-    </td>
+    @if (User.IsInRole("admin"))
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.SetlistId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConcertId)
+        </td>
+    }
     <td>
         @Html.DisplayFor(modelItem => item.DateOfPerformance)
     </td>
@@ -45,15 +53,25 @@
     </td>
     @foreach (var song in item.SongsForSetlist)
     {
-    <td>
-        @song.Title, 
+    <td class="pull-left">
+        <div class="">   
+            <span class="">                
+                @song.Title
+            </span>
+        </div> 
     </td>
     }
-    <td>
+<td class="pull-left">
+    @if (User.IsInRole("admin"))
+    {
+        <span>
+        @Html.ActionLink("Details", "Details", new { id = item.SetlistId }); |
         @Html.ActionLink("Edit", "Edit", new { id = item.SetlistId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.SetlistId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.SetlistId })
-    </td>
+        @Html.ActionLink("Delete", "Delete", new { id = item.SetlistId });
+        </span>
+
+    }
+</td>
 </tr>
 
 }

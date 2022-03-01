@@ -1,65 +1,77 @@
 ﻿@model IEnumerable<Goose.Models.ConcertsAttendedModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Attendance - ";
 }
 
-<h2>Index</h2>
+<h2>Concerts You Went To</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+<table class="table table-striped">
+    <thead>
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
+        @if (User.IsInRole("admin"))
+        {
         <th>
             @Html.DisplayNameFor(model => model.ConcertId)
+        </th>
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfPerformance)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BandName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.VenueName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateOfPerformance)
-        </th>
+            @Html.DisplayNameFor(model => model.BandName)
+        </th>         
         <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>        
+            @Html.DisplayNameFor(model => model.Setlists)
+        </th>
         <th></th>
     </tr>
+    </thead>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
+        @if (User.IsInRole("admin"))
+        {
         <td>
             @Html.DisplayFor(modelItem => item.ConcertId)
+        </td>
+        }        
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfPerformance)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BandName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.VenueName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateOfPerformance)
-        </td>
+            @Html.DisplayFor(modelItem => item.BandName)
+        </td>           
+        @foreach (var item2 in item.Setlists)
+        {
+                <td>
+                    
+                    <div>
+                        @Html.DisplayFor(modelItem => item2.SetNumber):
+                        @foreach (var song in item2.SongsForSetlist)
+                        {
+                            <span class="songswithoutcommas">@Html.ActionLink(song.Title, "Details", "Song", new { id = song.SongId }, new {@class = "songswithoutcommas" })</span>
+                        }
+                    </div>
+                </td>            
+        }
         <td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>        
-        <td>            
-            @Html.ActionLink("I did not go to that", "Unattend", new { id = item.ConcertId }) |
+            
+            @Html.ActionLink("I did not go to that", "Unattend", new { id = item.ConcertId }, new {@class = "btn attendancecolor" })            
+            
         </td>
     </tr>
 }
