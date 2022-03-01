@@ -1,12 +1,11 @@
 ﻿@model IEnumerable<Goose.Models.Song_Models.SongListItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Songs - ";
 }
 
 <h2>Index</h2>
 
-<p> </p>
 
 @if (User.IsInRole("admin"))
 {
@@ -14,54 +13,86 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 }
-<table class="table">
+<table class="table table-responsive table-striped">
     <tr>
         @if (User.IsInRole("admin"))
         {
-        <th>
-            @Html.ActionLink("SongId", "Index", new { sortOrder = ViewBag.IdSortParm })
-        </th>
+            <th>
+                @Html.ActionLink("SongId", "Index", new { sortOrder = ViewBag.IdSortParm }, new { @id = "songsort" })
+            </th>
         }
         <th>
-            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm })
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm }, new { @id = "songsort" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Artist)
         </th>
         <th>
-            @Html.ActionLink("Count", "Index", new { sortOrder = ViewBag.CountSortParm })            
+            @Html.DisplayNameFor(model => model.OriginalArtist)
         </th>
-        
+        <th>
+            @Html.ActionLink("Total Time Played", "Index", new { sortOrder = ViewBag.CountSortParm }, new { @id = "songsort" })
+        </th>
+        <th>
+            @Html.ActionLink("First Time Played", "Index", new { sortOrder = ViewBag.FTPSortParm }, new { @id = "songsort" })
+        </th>
+        <th>
+            @Html.ActionLink("Last Time Played", "Index", new { sortOrder = ViewBag.LTPSortParm }, new { @id = "songsort" })
+        </th>   
+        <th>
+            @Html.ActionLink("% of Concerts", "Index", new { sortOrder = ViewBag.AvgSortParm }, new { @id = "songsort" })
+        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
 <tr>
     @if (User.IsInRole("admin"))
-    { 
+    {
         <td>
             @Html.DisplayFor(modelItem => item.SongId)
         </td>
     }
 
     <td>
-        @Html.ActionLink(item.Title, "Details", new {id = item.SongId})
+        @Html.ActionLink(item.Title, "Details", new { id = item.SongId })
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Artist)
     </td>
+    @if (item.OriginalArtist != "Goose")
+    {
+
+    <td>
+        @Html.DisplayFor(modelItem => item.OriginalArtist)
+    </td>
+    }
+    else
+    {
+        <td> </td>
+    }
     <td>
         @Html.DisplayFor(modelItem => item.TimesPlayed)
     </td>
     <td>
-        
+        @Html.DisplayFor(modelItem => item.FirstTimePlayed)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastTimePlayed)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AvgTimesPlayed)
+    </td>
+    <td>
+
         @if (User.IsInRole("admin"))
         {
             <p>
-            @Html.ActionLink("Edit", "Edit", new { id = item.SongId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.SongId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.SongId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SongId })
             </p>
-        }        
+        }
     </td>
 </tr>
 }
