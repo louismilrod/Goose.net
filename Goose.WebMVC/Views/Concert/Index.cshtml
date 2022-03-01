@@ -43,9 +43,9 @@
                 @Html.DisplayNameFor(model => model.ConcertId)
             </th>
         }
-        <th>
-            @Html.DisplayNameFor(model => model.DateOfPerformance)
-        </th>
+    <th>
+        @Html.ActionLink("Performance Date", "Index", new { sortOrder = ViewBag.DateSortParm }, new { @id = "songsort" })
+    </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
         </th>
@@ -58,7 +58,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Setlists)
         </th>
-
         <th></th>
     </tr>
 
@@ -72,7 +71,7 @@
                 </td>
             }
             <td>
-                @Html.DisplayFor(modelItem => item.DateOfPerformance)
+                <a href="~/Concert/Details/@item.ConcertId">@Html.DisplayFor(modelItem => item.DateOfPerformance)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Location)
@@ -90,16 +89,15 @@
                         <tr>
                             <td>
                                 <div>
+                                                                       
+                                 @Html.DisplayFor(modelItem => setlistDataForConcertDetail.SetNumber):
+                                    
+                                @foreach (var song in setlistDataForConcertDetail.SongsForSetlist)
+                                {
 
-                                    <div>
-                                        @Html.DisplayFor(modelItem => setlistDataForConcertDetail.SetNumber)<p>:</p>
-                                    </div>
-                                    @foreach (var song in setlistDataForConcertDetail.SongsForSetlist)
-                                    {
-
-                                        <span>@Html.ActionLink(song.Title, "Details", "Song", new { id = song.SongId }, null)</span>
+                                    @Html.ActionLink(song.Title, "Details", "Song", new { id = song.SongId }, new { @class = "songswithoutcommas" })
                                        
-                                    }
+                                }
                                 </div>
                             </td>
                         </tr>
@@ -111,18 +109,15 @@
                 @if (User.IsInRole("admin"))
                 {
                     <p>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ConcertId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ConcertId })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ConcertId }, new { @class = "btn btn-default center-block" }) 
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ConcertId }, new { @class = "btn btn-default center-block" })
                     </p>
                 }
 
-                @Html.ActionLink("Details", "Details", new { id = item.ConcertId })                
+                @Html.ActionLink("Details", "Details", new { id = item.ConcertId }, new { @class = "btn btn-default center-block" })
                 @if (User.Identity.IsAuthenticated)
-                {
-                    {
-                        <p>@Html.ActionLink("I went to that", "Attended", new { id = item.ConcertId }, new { @class = "btn btn-" }) |</p>
-
-                    }
+                {                    
+                 @Html.ActionLink("I went to that", "Attended", new { id = item.ConcertId }, new { @class = "btn btn-default center-block" })                   
                 }
             </td>
         </tr>

@@ -9,18 +9,9 @@
 <div>
     <h4>Statistics:</h4>
     <hr />
-    <dl class="dl-horizontal">       
-
+    <dl class="dl-horizontal"> 
         <dt>
-            @Html.DisplayNameFor(model => model.Artist)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Artist)
-        </dd>       
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OriginalArtist)
+            @Html.DisplayNameFor(model => model.OriginalArtist):
         </dt>
 
         <dd>
@@ -28,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FirstTimePlayed)
+            @Html.DisplayNameFor(model => model.FirstTimePlayed):
         </dt>
 
         <dd>
@@ -36,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastTimePlayed)
+            @Html.DisplayNameFor(model => model.LastTimePlayed):
         </dt>
 
         <dd>
@@ -44,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TimesPlayed)
+            @Html.DisplayNameFor(model => model.TimesPlayed):
         </dt>
 
         <dd>
@@ -52,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PercentageOfShows)
+            @Html.DisplayNameFor(model => model.PercentageOfShows):
         </dt>
 
         <dd>
@@ -63,7 +54,7 @@
 <p>
     @if (User.IsInRole("admin"))
     {
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SongId  })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SongId  }, new { @class = "btn btn-default" })
     }
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
 </p>

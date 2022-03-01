@@ -28,7 +28,9 @@ namespace Goose.Services
                 var query = ctx.SongsJoinSetlist.Select(s => new SongsJoinSetlistViewModel
                 {
                     SongsJoinSetlistId = s.SongsJoinSetlistId,
-                    SetlistId = s.SetlistId,                    
+                    SetlistId = s.SetlistId, 
+                    DateOfPerformance = s.Setlist.Concert.PerformanceDate,
+                    SetType = s.Setlist.SetNumber,
                     SongId = s.SongId,
                     Title = s.Song.Title,
                     PositionInSet = s.PositionInSet,

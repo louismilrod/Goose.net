@@ -25,20 +25,30 @@ namespace Goose.Services
         public IEnumerable<SongListItem> GetSongLists()
         {
             using (var ctx = new ApplicationDbContext())
-            {
-                //implement first time played
-                var query = ctx.Songs.Select(s => new SongListItem
+            {               
+                var list = new List<SongListItem>();
+                foreach (var item in ctx.Songs)
                 {
-                    SongId = s.SongId,
-                    Artist = s.Artist,
-                    //OriginalArtist = s.OriginalArtist,
-                    Title = s.Title,
-                    //FirstTimePlayed = FirstTimePlayed(s.SongId),
-                    //LastTimePlayed = LastTimePlayed(s.SongId),
-                    TimesPlayed = ctx.SongsJoinSetlist.Where(f => f.SongId == s.SongId).Count()
-                });
+                    var entity = ctx.Songs.Single(s => s.SongId == item.SongId);
+                    double timesplayed = ctx.SongsJoinSetlist.Where(f => f.SongId == item.SongId).Count();
+                    double totalshows = ctx.Concerts.Count();
 
-                return query.ToArray();
+                    var item2 = new SongListItem()
+                    {
+                        SongId = item.SongId,
+                        Artist = item.Artist,
+                        OriginalArtist = item.OriginalArtist,
+                        Title = item.Title,
+                        FirstTimePlayed = FirstTimePlayed(item.SongId),
+                        LastTimePlayed = LastTimePlayed(item.SongId),
+                        TimesPlayed = ctx.SongsJoinSetlist.Where(f => f.SongId == item.SongId).Count(),
+                        AvgTimesPlayed = timesplayed/totalshows
+                    };
+
+                    list.Add(item2);
+                }
+                return list;
+               
             }
         }
 
@@ -196,8 +206,8 @@ namespace Goose.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var songtocount = ctx.Songs.Single(x => x.SongId == songId);
-                var songjoinsetlist = songtocount.SongJoinSetlists.Select(x => x.Setlist.Concert); //selects all the concerts that a song appears on
-                var concertsinorder = songjoinsetlist.OrderBy(s => s.PerformanceDate);
+                var concertswithsong = songtocount.SongJoinSetlists.Select(x => x.Setlist.Concert); //selects all the concerts that a song appears on
+                var concertsinorder = concertswithsong.OrderBy(s => s.PerformanceDate);
                 var firstconcertperformance = concertsinorder.FirstOrDefault();
                 if (firstconcertperformance != null)
                 {
