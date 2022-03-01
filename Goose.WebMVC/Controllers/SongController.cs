@@ -17,6 +17,9 @@ namespace Goose.WebMVC.Controllers
             ViewBag.TitleSortParm = String.IsNullOrEmpty(sortorder) ? "title_desc" : "";
             ViewBag.IdSortParm = String.IsNullOrEmpty(sortorder) ? "id_desc" : "";
             ViewBag.CountSortParm = String.IsNullOrEmpty(sortorder) ? "count" : "";
+            ViewBag.AvgSortParm = String.IsNullOrEmpty(sortorder) ? "avg" : "";
+            ViewBag.FTPSortParm = String.IsNullOrEmpty(sortorder) ? "ftp" : "";
+            ViewBag.LTPSortParm = String.IsNullOrEmpty(sortorder) ? "ltp" : "";
             
             var service = AnonymousServiceView();
             var model = service.GetSongLists();
@@ -31,6 +34,15 @@ namespace Goose.WebMVC.Controllers
                     break;
                 case "count":
                     songs = model.OrderByDescending(a =>a.TimesPlayed);
+                    break;
+                case "avg":
+                    songs = model.OrderByDescending(a => a.AvgTimesPlayed);
+                    break;
+                case "ftp":
+                    songs = model.OrderByDescending(a => a.FirstTimePlayed);
+                    break;
+                case "ltp":
+                    songs = model.OrderByDescending(a => a.LastTimePlayed);
                     break;
                 default:
                     songs = model.OrderBy(b=>b.Title);
