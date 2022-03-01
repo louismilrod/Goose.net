@@ -7,13 +7,13 @@ namespace Goose.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddedInAttendanceToAttendanceTable : IMigrationMetadata
+    public sealed partial class Fixing_Drop_Mistake : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedInAttendanceToAttendanceTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Fixing_Drop_Mistake));
         
         string IMigrationMetadata.Id
         {
-            get { return "202202251616368_AddedInAttendanceToAttendanceTable"; }
+            get { return "202202282017235_Fixing_Drop_Mistake"; }
         }
         
         string IMigrationMetadata.Source
