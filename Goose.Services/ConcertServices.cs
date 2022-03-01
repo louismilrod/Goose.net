@@ -205,8 +205,9 @@ namespace Goose.Services
                 {
                     UserId = _userId,
                     ConcertId = concertId,
-                };
-                var inattendance = ctx.ConcertsAttended.Where(x => x.ConcertId == concertId).Where(x => x.UserId == _userId);
+                };                
+
+                var inattendance = ctx.ConcertsAttended.Where(x => x.ConcertId == concertId && x.UserId == _userId);
 
                 if (inattendance.Any())//++user id
                 {
