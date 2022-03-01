@@ -264,7 +264,6 @@
     <Content Include="Views\Setlist\Create.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
-    <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Attendance\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
