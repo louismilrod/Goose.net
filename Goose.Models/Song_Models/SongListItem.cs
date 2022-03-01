@@ -25,5 +25,8 @@ namespace Goose.Models.Song_Models
         [Display(Name = "Last Time Played")]
         public DateTime LastTimePlayed { get; set; }
         
+        [Display(Name = "Avg Playrate")]
+        public double AvgTimesPlayed { get; set; }
+
     }
 }
