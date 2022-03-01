@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using static Goose.Data.Data.Setlist;
 
 namespace Goose.Models
 {
@@ -24,5 +25,8 @@ namespace Goose.Models
         public SelectList SelectListSong { get; set; }
         public SelectList SelectPositionInSet { get; set; }
         public string Title { get; set; }
+        public DateTime DateOfPerformance { get; set; }
+
+        public SetType SetType { get; set; }
     }
 }
