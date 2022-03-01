@@ -12,11 +12,22 @@ namespace Goose.WebMVC.Controllers
     public class ConcertController : Controller
     {
         // GET: Concert
-        public ActionResult Index()
+        public ActionResult Index(string sortorder)
         {
+            ViewBag.DateSortParm = String.IsNullOrEmpty(sortorder) ? "date" : "";
+
             var service = AnonymousConcertService();
             var model = service.GetConcert_List();
-            return View(model);
+            var concerts = from c in model select c;
+            switch (sortorder)
+            {
+                case "date":
+                    concerts = model.OrderBy(a => a.DateOfPerformance);
+                    break;
+                default:
+                    break;
+            }
+            return View(concerts.ToList());
         }
 
         //Get: Concert/Details/{id}
