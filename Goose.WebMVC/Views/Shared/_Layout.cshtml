@@ -22,6 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Songs", "Index", "Song")</li>
+                    <li> @Html.ActionLink("Setlists", "Index", "Setlist")</li>
                     <li>@Html.ActionLink("Concerts", "Index", "Concert")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -30,9 +31,7 @@
                     @if (User.IsInRole("admin"))
                     {
                         <li>@Html.ActionLink("Songs Join Setlist", "Index", "SongJoinSetlist")</li>
-                        <li> @Html.ActionLink("Setlists", "Index", "Setlist")</li>
                         <li>@Html.ActionLink("Users", "Index", "Account")</li>
-
                     }
 
 
