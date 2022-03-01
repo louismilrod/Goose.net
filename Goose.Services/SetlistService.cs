@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Goose.Services
 {
@@ -59,6 +60,18 @@ namespace Goose.Services
 
                 ctx.Setlist.Add(setlist);
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public SelectList SelectListPopulator()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                SetlistCreate model = new SetlistCreate();
+                var concerts = ctx.Concerts.ToList().OrderBy(x => x.PerformanceDate);
+                model.SelectListSetlist = new SelectList(concerts, "ConcertId", "PerformanceDate");
+
+                return model.SelectListSetlist;
             }
         }
 
