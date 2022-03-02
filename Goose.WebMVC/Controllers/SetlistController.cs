@@ -61,11 +61,13 @@ namespace Goose.WebMVC.Controllers
         {
             var service = CreateSetListService();
             var detail = service.GetSetlistById(id);
+            SelectList selectListItems = service.SelectListPopulator();
             var model = new SetlistViewModel
             {
                 ConcertId = detail.ConcertId,
                 SetlistId = detail.SetlistId,
-                SetNumber = detail.SetNumber,                
+                SetNumber = detail.SetNumber,
+                SelectListSetlist = selectListItems,
             };
 
             return View(model);
@@ -76,6 +78,10 @@ namespace Goose.WebMVC.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, SetlistViewModel model)
         {
+            var service = CreateSetListService();
+            SelectList selectListItems = service.SelectListPopulator();
+            model.SelectListSetlist = selectListItems;
+
             if (!ModelState.IsValid) return View(model);
 
             if (model.SetlistId != id)
@@ -84,7 +90,6 @@ namespace Goose.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = CreateSetListService();
 
             if (service.UpdateSetlist(model))
             {

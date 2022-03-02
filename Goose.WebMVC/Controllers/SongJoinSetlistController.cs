@@ -58,17 +58,7 @@ namespace Goose.WebMVC.Controllers
                 ModelState.Clear();
                 ModelState.AddModelError(e.InnerException.Message, "SetlistID not found");
                 return RedirectToAction("Create");
-            }
-
-            //if (service.CreateSongJoinSetlist(model))
-            //{
-            //    TempData["SaveResult"] = "Songs Joining Setlist table created";
-
-            //    return RedirectToAction("Create");
-            //}
-
-            //ModelState.AddModelError("", "Error creating joining table");
-            //return View(model);
+            }           
         }
 
         //GET: SongJoinSetlist/Edit/5

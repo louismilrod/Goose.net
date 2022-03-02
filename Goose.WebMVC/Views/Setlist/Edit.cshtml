@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SetNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SetNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EnumDropDownListFor(model => model.SetNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SetNumber, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ConcertId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ConcertId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.ConcertId, Model.SelectListSetlist, "Perfromances", new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ConcertId, "", new { @class = "text-danger" })
             </div>
         </div>        
