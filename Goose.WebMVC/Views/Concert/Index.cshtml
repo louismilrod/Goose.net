@@ -35,7 +35,7 @@
     </div>
 }
 
-<table class="table">
+<table class="table-responsive table-striped">
     <tr>
         @if (User.IsInRole("admin"))
         {
@@ -51,10 +51,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.VenueName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BandName)
-        </th>        
+        </th>               
         <th>
             @Html.DisplayNameFor(model => model.Setlists)
         </th>
@@ -78,10 +75,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VenueName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BandName)
-            </td>            
+            </td>                        
             <td>
                 @foreach (var setlistDataForConcertDetail in item.Setlists)
                 {
@@ -95,7 +89,7 @@
                                 @foreach (var song in setlistDataForConcertDetail.SongsForSetlist)
                                 {
 
-                                    @Html.ActionLink(song.Title, "Details", "Song", new { id = song.SongId }, new { @class = "songswithoutcommas" })
+                                    <span class="songswithoutcommas" id="songcolor">@song.Title</span>
                                        
                                 }
                                 </div>
