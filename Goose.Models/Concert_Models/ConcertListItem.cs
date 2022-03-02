@@ -25,6 +25,5 @@ namespace Goose.Models.Concert_Models
         public string Notes { get; set; }
         [Display(Name = "Setlist")]
         public List<SetlistDataForConcertDetailView> Setlists { get; set; }
-        public bool InAttendance { get; set; }
     }
 }
