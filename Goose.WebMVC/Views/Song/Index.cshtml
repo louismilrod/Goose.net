@@ -23,12 +23,9 @@
         }
         <th>
             @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm }, new { @id = "songsort" })
-        </th>
+        </th>        
         <th>
-            @Html.DisplayNameFor(model => model.Artist)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OriginalArtist)
+            @Html.ActionLink("Original Artist", "Index", new { sortOrder = ViewBag.OrigSortParm }, new { @id = "songsort" })
         </th>
         <th>
             @Html.ActionLink("Total Time Played", "Index", new { sortOrder = ViewBag.CountSortParm }, new { @id = "songsort" })
@@ -55,12 +52,9 @@
         </td>
     }
 
-    <td>
-        @Html.ActionLink(item.Title, "Details", new { id = item.SongId })
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Artist)
-    </td>
+    <td id="songcolor">
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>    
     @if (item.OriginalArtist != "Goose")
     {
 
@@ -70,7 +64,7 @@
     }
     else
     {
-        <td> </td>
+        <td>@Html.DisplayFor(modelItem => item.Artist)</td>
     }
     <td>
         @Html.DisplayFor(modelItem => item.TimesPlayed)
