@@ -1,6 +1,9 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Open Sans', 'Roboto';
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -31,18 +34,51 @@ textarea {
     content: '';
 }
 
-.attendancecolor {
-    color: green;
-    background-color: antiquewhite;
-    border-color: black;
+#songcolor{
+    color: deeppink;
 }
 
 #songsort{
-    color: black
+    color: midnightblue;
 }
 
 #songtable{
-    display: block
+    display: block;
 }
 
+.homeimage{
+    border-radius: 60px;
+    width: 35em;
+    height: auto;
+    margin-top: -10em;
+    margin-right: 5em;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.welcometext{
+    text-align: center;
+}
+
+.alert-success {
+    color: lightslategrey;
+    background-color: lightpink;
+    border-color: pink;
+    margin-right: 55em;
+}
+
+.alert{
+    padding: 10px
+}
+
+.alert-danger {
+    margin-right: 55em;
+}
+
+tr {
+    color: midnightblue
+}
 
