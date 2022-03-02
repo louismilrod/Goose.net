@@ -193,6 +193,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
+    <Content Include="images\summer_tour.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -242,14 +243,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Song\Index.cshtml" />
     <Content Include="Views\Song\Create.cshtml" />
-    <Content Include="Views\Song\Details.cshtml" />
     <Content Include="Views\Song\Delete.cshtml" />
     <Content Include="Views\SongJoinSetlist\Delete.cshtml" />
     <Content Include="Views\SongJoinSetlist\Create.cshtml" />
-    <Content Include="Views\SongJoinSetlist\Details.cshtml" />
     <Content Include="Views\SongJoinSetlist\Index.cshtml" />
     <Content Include="Views\Song\Edit.cshtml" />
-    <Content Include="Views\Setlist\Details.cshtml" />
     <Content Include="Views\Setlist\Delete.cshtml" />
     <Content Include="Views\Setlist\Index.cshtml" />
     <Content Include="Views\Concert\Create.cshtml" />

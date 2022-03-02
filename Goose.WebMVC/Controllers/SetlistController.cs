@@ -19,15 +19,7 @@ namespace Goose.WebMVC.Controllers
             var service = AnonymousSetListService();
             var model = service.GetSetlist_List();
             return View(model);
-        }
-
-        // GET: Setlist/Details/5
-        public ActionResult Details(int id)
-        {
-            var service = AnonymousSetListService();
-            var model = service.GetSetlistById(id);
-            return View(model);
-        }
+        }        
 
         // GET: Setlist/Create
         [Authorize(Roles = "admin")]

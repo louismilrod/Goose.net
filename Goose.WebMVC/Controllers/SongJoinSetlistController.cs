@@ -3,6 +3,7 @@ using Goose.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,15 +19,7 @@ namespace Goose.WebMVC.Controllers
             var service = CreateSongJoinSetlistService();
             var model = service.GetSongsJoinSetlist_List();
             return View(model);
-        }
-
-        // GET: SongJoinSetlist/Details/5
-        public ActionResult Details (int id)
-        {
-            var service = CreateSongJoinSetlistService();
-            var model = service.GetSongsJoinSetlistById(id);
-            return View(model);
-        }
+        }        
 
         //GET: SongJoinSetlist/Create
         public ActionResult Create()
@@ -51,15 +44,31 @@ namespace Goose.WebMVC.Controllers
 
             var service = CreateSongJoinSetlistService();
 
-            if (service.CreateSongJoinSetlist(model))
+            try
             {
-                TempData["SaveResult"] = "Songs Joining Setlist table created";
+                service.CreateSongJoinSetlist(model);
+                TempData["SaveResult"] = "Created!";
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
+            }
+            catch (DbUpdateException e)
+            {
+                TempData["Incorrect"] = "SetlistID not in database!";
+
+                ModelState.Clear();
+                ModelState.AddModelError(e.InnerException.Message, "SetlistID not found");
+                return RedirectToAction("Create");
             }
 
-            ModelState.AddModelError("", "Error creating joining table");
-            return View(model);
+            //if (service.CreateSongJoinSetlist(model))
+            //{
+            //    TempData["SaveResult"] = "Songs Joining Setlist table created";
+
+            //    return RedirectToAction("Create");
+            //}
+
+            //ModelState.AddModelError("", "Error creating joining table");
+            //return View(model);
         }
 
         //GET: SongJoinSetlist/Edit/5

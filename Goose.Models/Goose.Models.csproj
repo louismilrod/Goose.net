@@ -89,7 +89,6 @@
     <Compile Include="Song_Models\SongCreate.cs" />
     <Compile Include="Song_Models\SongDetail.cs" />
     <Compile Include="Song_Models\SongEdit.cs" />
-    <Compile Include="Song_Models\SongExtraDetails.cs" />
     <Compile Include="Song_Models\SongListItem.cs" />
     <Compile Include="Song_Models\SongsBeforeAndAfter.cs" />
     <Compile Include="User_Models\UserDetail.cs" />

@@ -16,15 +16,7 @@ namespace Goose.Services
             {
                 return ctx.Users.ToList();
             }
-        }
-
-        //public IEnumerable<IdentityRole> GetAllRoles()
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        return ctx.Roles.ToList();
-        //    }
-        //}
+        }      
 
     }
 }

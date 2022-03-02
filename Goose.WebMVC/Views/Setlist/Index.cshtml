@@ -65,9 +65,8 @@
     @if (User.IsInRole("admin"))
     {
         <span>
-        @Html.ActionLink("Details", "Details", new { id = item.SetlistId }); |
         @Html.ActionLink("Edit", "Edit", new { id = item.SetlistId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.SetlistId });
+        @Html.ActionLink("Delete", "Delete", new { id = item.SetlistId })
         </span>
 
     }

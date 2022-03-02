@@ -63,15 +63,13 @@
                         @Html.DisplayFor(modelItem => item2.SetNumber):
                         @foreach (var song in item2.SongsForSetlist)
                         {
-                            <span class="songswithoutcommas">@Html.ActionLink(song.Title, "Details", "Song", new { id = song.SongId }, new {@class = "songswithoutcommas" })</span>
+                            <span class="songswithoutcommas">@Html.ActionLink(song.Title, "Index", "Song", null, new {@class = "songswithoutcommas" })</span>
                         }
                     </div>
-                </td>            
+                </td>
         }
-        <td>
-            
-            @Html.ActionLink("I did not go to that", "Unattend", new { id = item.ConcertId }, new {@class = "btn attendancecolor" })            
-            
+        <td>            
+            @Html.ActionLink("I did not go to that", "Unattend", new { id = item.ConcertId }, new {@class = "btn btn-default" })            
         </td>
     </tr>
 }

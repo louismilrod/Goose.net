@@ -27,47 +27,10 @@ namespace Goose.Services
             _userId = userId;
         }
 
-        //public List<ConcertListItem> GetConcert_List()
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
-        //        //empty list, foreach through concerts, and add to the list
-        //        var list = new List<ConcertListItem>();
-        //        foreach (var item in ctx.Concerts)
-        //        {
-        //            list.Add(new ConcertListItem
-        //            {
-        //                ConcertId = item.ConcertId,
-        //                BandName = item.BandName,
-        //                DateOfPerformance = item.PerformanceDate,
-        //                VenueName = item.VenueName,
-        //                Location = item.Location,
-        //                Notes = item.Notes,
-        //                InAttendance = attendancetable.Where(c => c.ConcertId == item.ConcertId).Count() > 0,
-        //                Setlists = item.Setlists.Select(a => new SetlistDataForConcertDetailView
-        //                {
-        //                    SetlistId = a.SetlistId,
-        //                    SetNumber = a.SetNumber,
-        //                    SongsForSetlist = a.SongsForSetList.Select(b => new SongDetail
-        //                    {
-        //                        Title = b.Song.Title,
-        //                        SongId = b.Song.SongId,
-        //                    }).ToList(),
-        //                }).ToList()
-
-        //            });
-        //        }
-        //        return list;
-        //    }
-        //}
-
         public IEnumerable<ConcertListItem> GetConcert_List()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
-                //in attendance logic
                 var query = ctx.Concerts.Select(s => new ConcertListItem
                 {
                     ConcertId = s.ConcertId,
@@ -76,7 +39,6 @@ namespace Goose.Services
                     VenueName = s.VenueName,
                     Location = s.Location,
                     Notes = s.Notes,
-                    //InAttendance = attendancetable.Where(c => c.ConcertId == s.ConcertId).Count() > 0,
                     Setlists = s.Setlists.Select(a => new SetlistDataForConcertDetailView
                     {
                         SetlistId = a.SetlistId,
@@ -93,36 +55,6 @@ namespace Goose.Services
             }
         }
 
-
-        //public bool Was_I_There()
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var attendancetable = ctx.ConcertsAttended.Where(u => u.UserId == _userId);
-        //        var query = ctx.Concerts.Select(u => u.ConcertId).ToList();
-
-        //        List<ConcertListItem> concertId = new List<ConcertListItem>();
-        //        foreach (var item in attendancetable)
-        //        {
-
-        //            if (query.Contains(item.ConcertId))
-        //            {
-        //                return true;
-        //            }
-
-        //            else
-        //            {
-        //                return false;
-        //            }
-
-        //        }
-
-        //        return false;
-
-        //    }
-
-        //}
-
         public bool CreateConcert(ConcertViewModel model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -130,7 +62,7 @@ namespace Goose.Services
                 var concert = new Concert()
                 {
                     ConcertId = model.ConcertId,
-                    BandName = model.BandName,
+                    BandName = "Goose",//model.BandName,
                     PerformanceDate = model.DateOfPerformance,
                     VenueName = model.VenueName,
                     Location = model.Location,                    
@@ -209,7 +141,7 @@ namespace Goose.Services
 
                 var inattendance = ctx.ConcertsAttended.Where(x => x.ConcertId == concertId && x.UserId == _userId);
 
-                if (inattendance.Any())//++user id
+                if (inattendance.Any())
                 {
                     return false;
                 }

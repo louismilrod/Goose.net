@@ -20,6 +20,7 @@ namespace Goose.WebMVC.Controllers
             ViewBag.AvgSortParm = String.IsNullOrEmpty(sortorder) ? "avg" : "";
             ViewBag.FTPSortParm = String.IsNullOrEmpty(sortorder) ? "ftp" : "";
             ViewBag.LTPSortParm = String.IsNullOrEmpty(sortorder) ? "ltp" : "";
+            ViewBag.OrigSortParm = String.IsNullOrEmpty(sortorder) ? "orig" : "";
             
             var service = AnonymousServiceView();
             var model = service.GetSongLists();
@@ -43,6 +44,9 @@ namespace Goose.WebMVC.Controllers
                     break;
                 case "ltp":
                     songs = model.OrderByDescending(a => a.LastTimePlayed);
+                    break;
+                case "orig":
+                    songs = model.OrderBy(a => a.OriginalArtist);
                     break;
                 default:
                     songs = model.OrderBy(b=>b.Title);
@@ -77,15 +81,7 @@ namespace Goose.WebMVC.Controllers
 
             ModelState.AddModelError("", "Error creating a song");
             return View(model);
-        }
-
-        public ActionResult Details(int id)
-        {
-            var svc = AnonymousServiceView();
-            var model = svc.GetSongById(id);
-
-            return View(model);
-        }
+        }        
 
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
@@ -152,15 +148,6 @@ namespace Goose.WebMVC.Controllers
 
             return RedirectToAction("Index");
         }
-
-        //public ActionResult GetOccurances(int songid)
-        //{
-        //    var service = AnonymousServiceView();
-        //    var svc = service.GetSongOccurances(songid);
-        //    return View(service);
-        //}
-
-
         private SongService CreateSongService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
