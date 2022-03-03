@@ -50,8 +50,7 @@ textarea {
     border-radius: 60px;
     width: 35em;
     height: auto;
-    margin-top: -10em;
-    margin-right: 5em;
+    margin-top: -18em;
 }
 
 .flex-container{
@@ -80,5 +79,9 @@ textarea {
 
 tr {
     color: midnightblue
+}
+
+.target-goose {
+    padding-right: 9em;
 }
 
