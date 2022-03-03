@@ -449,7 +449,6 @@ namespace Goose.WebMVC.Controllers
 
             var userList = users.Select(u =>
             {
-                /* do some stuff */
                 return new UserListItem()
                 {
                     UserId = u.Id,
