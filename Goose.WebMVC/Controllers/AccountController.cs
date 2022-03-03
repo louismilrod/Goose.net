@@ -499,12 +499,12 @@ namespace Goose.WebMVC.Controllers
             var UserRoles = UserManager.GetRoles(userId);
             bool UserIsAdmin = UserRoles.Any(r => r == "admin");
 
-            if (!currentRoles.Contains("admin"))
-            {
-                ModelState.AddModelError("", "You do not have permission to do this");
+            //if (!currentRoles.Contains("admin"))
+            //{
+            //    ModelState.AddModelError("", "You do not have permission to do this");
 
-                return View(model);
-            }
+            //    return View(model);
+            //}
 
             if (!ModelState.IsValid) return View(model);
 
@@ -538,6 +538,28 @@ namespace Goose.WebMVC.Controllers
 
             ModelState.AddModelError("", "User could not be updated");
             return View(model);
+        }
+
+        [ActionName("Delete")]
+        //[Authorize(Roles = "admin")]
+        public ActionResult Delete(string id)
+        {
+            var model = UserManager.FindById(id);            
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        //[Authorize(Roles = "admin")]
+        public ActionResult DeletePost(string userId)
+        {
+
+            var userService = new UserService();
+            userService.DeleteUser(userId);
+
+            return RedirectToAction("Index");
         }
         #region Helpers
         // Used for XSRF protection when adding external logins
