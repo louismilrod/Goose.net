@@ -18,5 +18,20 @@ namespace Goose.Services
             }
         }      
 
+
+        public bool DeleteUser (string userId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Users
+                        .Single(e => e.Id == userId);
+
+                ctx.Users.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
